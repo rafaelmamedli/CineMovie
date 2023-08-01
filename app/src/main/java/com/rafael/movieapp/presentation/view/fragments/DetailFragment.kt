@@ -7,19 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.DateConverter
-import com.rafael.movieapp.data.util.Resource
-import com.rafael.movieapp.data.util.Status
 import com.rafael.movieapp.data.util.toRoomResult
-import com.rafael.movieapp.data.util.toast
 import com.rafael.movieapp.databinding.FragmentDetailBinding
 import com.rafael.movieapp.presentation.viewmodel.LocalViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -42,11 +36,15 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getObjects()
+        favMovie()
+
+
+    }
+
+    private fun favMovie() {
         binding.btnFav.setOnClickListener {
             objMovie?.toRoomResult()?.let { it1 -> viewModelLocal.addFavMovie(it1) }
         }
-        
-
     }
 
     @SuppressLint("NewApi")

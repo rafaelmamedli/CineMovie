@@ -31,6 +31,8 @@ import java.time.LocalDateTime
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+
+
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapterPopular: PopularMovieAdapter
@@ -59,12 +61,8 @@ class HomeFragment : Fragment() {
 
         getAdapters()
         observeData()
-        toSeeAll()
+        goToSeeAll()
         toDetail()
-
-
-
-
 
     }
 
@@ -102,7 +100,7 @@ class HomeFragment : Fragment() {
 
 
 
-    private fun toSeeAll() {
+    private fun goToSeeAll() {
 
         binding.seeAll1.setOnClickListener {
             findNavController().navigate(

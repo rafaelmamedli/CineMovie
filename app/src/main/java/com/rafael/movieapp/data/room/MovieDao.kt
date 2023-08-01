@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.rafael.movieapp.data.models.local.FavMovies
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -21,6 +22,6 @@ interface MovieDao {
     suspend fun update(favMovie: FavMovies)
 
     @Query("SELECT * FROM fav_movies")
-     fun getAllFavMovies(): List<FavMovies>
+     fun getAllFavMovies(): Flow<MutableList<FavMovies>>
 }
 

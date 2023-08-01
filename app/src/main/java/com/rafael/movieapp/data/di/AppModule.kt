@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.example.projectmoviecatch.data.retrofit.ApiService
 import com.rafael.bodyfattracker.data.repo.FavMoviesRepository
 import com.rafael.bodyfattracker.data.repo.FavMoviesRepositoryImpl
-import com.rafael.bodyfattracker.data.room.AppDatabase
+import com.rafael.movieapp.data.room.AppDatabase
 import com.rafael.bodyfattracker.data.room.MovieDao
 import com.rafael.movieapp.data.util.BASE_URL
 import dagger.Module
@@ -47,7 +47,7 @@ object AppModule {
 
     @Provides
     fun provideMovieDao(appDatabase: AppDatabase): MovieDao {
-        return appDatabase.bodyFatDao()
+        return appDatabase.MovieDao()
     }
 
     @Provides

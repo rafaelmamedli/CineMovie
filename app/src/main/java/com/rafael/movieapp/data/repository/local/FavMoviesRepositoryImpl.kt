@@ -2,12 +2,13 @@ package com.rafael.bodyfattracker.data.repo
 
 import com.rafael.bodyfattracker.data.room.MovieDao
 import com.rafael.movieapp.data.models.local.FavMovies
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class FavMoviesRepositoryImpl @Inject constructor(private val movieDao: MovieDao): FavMoviesRepository {
 
 
-    override suspend fun getAllFavMovies(): List<FavMovies> {
+    override suspend fun getAllFavMovies(): Flow<MutableList<FavMovies>> {
         return movieDao.getAllFavMovies()
     }
 
