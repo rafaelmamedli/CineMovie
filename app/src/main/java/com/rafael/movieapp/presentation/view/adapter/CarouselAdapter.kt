@@ -17,10 +17,12 @@ class CarouselAdapter(private val list: MutableList<Result>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Result) {
             binding.apply {
-                //  txtTitle.text = data.title
-                Glide.with(image)
+
+                txtImdb.text = data.vote_average.toString()
+                  txtTitle.text = data.title
+                Glide.with(posterImage)
                     .load("https://image.tmdb.org/t/p/w342/${data.poster_path}")
-                    .into(binding.image)
+                    .into(binding.posterImage)
                 itemView.setOnClickListener {
                     itemClickListener?.invoke(data)
                 }

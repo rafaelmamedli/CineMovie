@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,22 +12,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_gray"
-        >
-
-
-
+        android:background="@color/background_gray">
 
 
         <ImageView
-            android:id="@+id/posterImage"
+            android:id="@+id/backDrop"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:src="@drawable/ededede"
-            android:scaleType="centerCrop"
+            android:layout_height="513px"
             android:adjustViewBounds="true"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            android:scaleType="centerCrop"
+            android:src="@drawable/ededede"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/btnFav"
@@ -37,68 +32,46 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_marginTop="250dp"
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_backgorund"
-        android:minHeight="400dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/posterImage">
 
+        <ImageView
+            android:id="@+id/posterImage"
+            android:layout_width="342px"
+            android:layout_height="513px"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="144dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/abc"
+            app:layout_constraintStart_toStartOf="@+id/backDrop"
+            app:layout_constraintTop_toTopOf="@id/backDrop" />
 
         <TextView
-            android:textColor="@color/black_50"
             android:id="@+id/txtTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="12dp"
             android:paddingTop="12dp"
             android:paddingEnd="12dp"
             android:text="Fight Club"
+            android:textColor="@color/white"
             android:textSize="22sp"
-            android:textStyle="bold" />
-
-
-
-        <LinearLayout
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:textColor="@color/black_50"
-                android:layout_marginStart="12dp"
-                android:text="Release Date:"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/txtDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="8dp"
-                android:text="12 September 2023"
-                android:textSize="18sp"
-                 />
-
-        </LinearLayout>
-
+            app:layout_constraintStart_toEndOf="@+id/posterImage"
+            app:layout_constraintTop_toBottomOf="@+id/backDrop" />
 
 
         <TextView
-            android:textColor="#BF202125"
             android:id="@+id/txtImdb"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:paddingStart="12dp"
             android:text="9.1"
+            android:textColor="@color/white"
             android:textSize="22sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txtTitle"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
 
         <RatingBar
 
@@ -106,14 +79,42 @@
             style="@android:style/Widget.DeviceDefault.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_gravity="start"
-            android:progressTint="@color/yellow"
             android:numStars="5"
-            android:stepSize="0.2" />
+            android:progressTint="@color/yellow"
+            android:stepSize="0.2"
+            app:layout_constraintStart_toEndOf="@+id/txtImdb"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/baseline_calendar_month_24"
+            app:layout_constraintEnd_toEndOf="@+id/txtImdb"
+            app:layout_constraintStart_toStartOf="@+id/txtImdb"
+            app:layout_constraintTop_toBottomOf="@+id/txtImdb" />
+
+
 
         <TextView
-            android:textColor="@color/black_50"
+            android:fontFamily="@font/comfortaalight"
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:paddingStart="8dp"
+            android:textColor="@color/white"
+            android:text="12 September 2023"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        <TextView
+            android:fontFamily="@font/comfortaasemibold"
             android:id="@+id/txtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,13 +122,17 @@
             android:progressTint="@color/yellow"
             android:text="A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground
 orming in every town, until an evvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvccentric gets in the way and ignite"
-            android:textSize="24sp"
-            android:textStyle="italic" />
-    </LinearLayout>
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle=""
+            app:layout_constraintTop_toBottomOf="@+id/posterImage" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</ScrollView>

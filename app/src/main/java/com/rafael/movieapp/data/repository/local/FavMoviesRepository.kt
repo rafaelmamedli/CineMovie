@@ -1,8 +1,7 @@
-package com.rafael.bodyfattracker.data.repo
+package com.rafael.movieapp.data.repository.local
 
 
 import com.rafael.movieapp.data.models.local.FavMovies
-import com.rafael.movieapp.data.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface FavMoviesRepository  {

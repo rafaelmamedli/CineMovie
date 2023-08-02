@@ -1,19 +1,14 @@
 package com.rafael.movieapp.presentation.view.adapter
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.DateConverter
 import com.rafael.movieapp.databinding.RecentMovieItemBinding
-import com.rafael.movieapp.databinding.TopimdbMovieItemBinding
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.Locale
+
 
 
 class RecentMovieAdapter(var list: MutableList<Result>,val isHomeScreen: Boolean) :

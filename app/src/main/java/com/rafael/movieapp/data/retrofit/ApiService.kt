@@ -2,7 +2,6 @@ package com.example.projectmoviecatch.data.retrofit
 
 import com.rafael.movieapp.data.models.remote.Movie
 import com.rafael.movieapp.data.util.API_KEY
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -29,8 +28,11 @@ interface ApiService {
         @Query("api_key") apiKey: String = API_KEY
     ): Response<Movie>
 
-    @GET("search/movie?api_key=802b2c4b88ea1183858e6b285827696e&language=en-US")
-    fun getSearch(@Query("query") query: String): Call<Movie>
+    @GET("3/search/movie?")
+    suspend fun getSearch(
+        @Query("query") query: String ,
+        @Query("api_key") apiKey: String = API_KEY
+    ): Response<Movie>
 
 
 }

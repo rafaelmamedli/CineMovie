@@ -15,6 +15,11 @@
 
     <color name="gray">#d2d3db</color>
     <color name="background_gray">#656565</color>
+    <color name="black_10">#202125</color>
+<!--    <color name="black_30">#303135</color>-->
+    <color name="black_30">#BF303135</color>
+
+
     <color name="black_20">#202125</color>
     <color name="black_50">#030303</color>
 </resources>

@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.DateConverter
+import com.rafael.movieapp.data.util.glide
 import com.rafael.movieapp.data.util.toRoomResult
 import com.rafael.movieapp.databinding.FragmentDetailBinding
 import com.rafael.movieapp.presentation.viewmodel.LocalViewModel
@@ -59,9 +59,8 @@ class DetailFragment : Fragment() {
                         txtTitle.text = objMovie?.title
                         txtDescription.text = objMovie?.overview
                         txtImdb.text = objMovie?.vote_average.toString()
-                        Glide.with(posterImage)
-                            .load("https://image.tmdb.org/t/p/w342/" + objMovie?.backdrop_path)
-                            .into(posterImage)
+                        backDrop.glide(objMovie?.backdrop_path)
+                        posterImage.glide(objMovie?.poster_path)
                         val imdb = objMovie?.vote_average?.toFloat()
                         imdb?.let {
                             ratingBar.rating = (imdb / 2)
@@ -80,9 +79,10 @@ class DetailFragment : Fragment() {
                         txtTitle.text = objMovie?.title
                         txtDescription.text = objMovie?.overview
                         txtImdb.text = objMovie?.vote_average.toString()
-                        Glide.with(posterImage)
-                            .load("https://image.tmdb.org/t/p/w342/" + objMovie?.backdrop_path)
-                            .into(posterImage)
+                        backDrop.glide(objMovie?.backdrop_path)
+                        posterImage.glide(objMovie?.poster_path)
+                        backDrop.glide(objMovie?.backdrop_path)
+                        posterImage.glide(objMovie?.poster_path)
                         val imdb = objMovie?.vote_average?.toFloat()
                         imdb?.let {
                             ratingBar.rating = (imdb / 2)
@@ -100,10 +100,9 @@ class DetailFragment : Fragment() {
                         txtTitle.text = objMovie?.title
                         txtDescription.text = objMovie?.overview
                         txtImdb.text = objMovie?.vote_average.toString()
+                        backDrop.glide(objMovie?.backdrop_path)
+                        posterImage.glide(objMovie?.poster_path)
 
-                        Glide.with(posterImage)
-                            .load("https://image.tmdb.org/t/p/w342/" + objMovie?.backdrop_path)
-                            .into(posterImage)
                         val imdb = objMovie?.vote_average?.toFloat()
                         imdb?.let {
                             ratingBar.rating = (imdb / 2)
@@ -121,9 +120,8 @@ class DetailFragment : Fragment() {
                         txtTitle.text = objMovie?.title
                         txtDescription.text = objMovie?.overview
                         txtImdb.text = objMovie?.vote_average.toString()
-                        Glide.with(posterImage)
-                            .load("https://image.tmdb.org/t/p/w342/" + objMovie?.backdrop_path)
-                            .into(posterImage)
+                        backDrop.glide(objMovie?.backdrop_path)
+                        posterImage.glide(objMovie?.poster_path)
                         val imdb = objMovie?.vote_average?.toFloat()
                         imdb?.let {
                             ratingBar.rating = (imdb / 2)

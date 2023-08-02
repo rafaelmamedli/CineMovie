@@ -1,10 +1,8 @@
 package com.rafael.movieapp.data.models.local
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import kotlinx.android.parcel.Parcelize
 
 
 

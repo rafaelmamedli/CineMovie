@@ -8,4 +8,5 @@ interface MovieRepository {
    suspend fun getPopularMovies(page: String): Flow<Resource<Movie>>
    suspend fun getRecentMovies(page: String): Flow<Resource<Movie>>
    suspend fun getTopRatedMovies(page: String): Flow<Resource<Movie>>
+   suspend fun getMoviesByName(movieName:String): Flow<Resource<Movie>>
 }

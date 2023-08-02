@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rafael.movieapp.data.models.remote.Movie
 import com.rafael.movieapp.data.util.Resource
+import com.rafael.movieapp.domein.use_case.remote.GetMovieByNameUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetPopularMoviesUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetRecentMoviesUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetTopRatedMovies
@@ -23,7 +24,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val useCasePopular: GetPopularMoviesUseCase,
     private val useCaseRecent: GetRecentMoviesUseCase,
-    private val useCaseTopRated: GetTopRatedMovies
+    private val useCaseTopRated: GetTopRatedMovies,
+    private val useCaseMovieByName : GetMovieByNameUseCase
 ) :
     ViewModel() {
 
@@ -42,6 +44,9 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(Resource.loading(null))
     val topRatedMovieList: StateFlow<Resource<Movie>>
         get() = _topRatedMovieList
+
+
+
 
     init {
         getPopularMovies("1")
@@ -89,6 +94,7 @@ class HomeViewModel @Inject constructor(
 
 
     private fun getTopRatedMovies(page: String) {
+
         viewModelScope.launch(Dispatchers.Main
         ) {
             try {
@@ -109,6 +115,9 @@ class HomeViewModel @Inject constructor(
 
         }
     }
+
+
+
 
 
 }

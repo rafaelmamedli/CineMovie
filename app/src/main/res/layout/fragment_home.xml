@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".presentation.view.fragments.HomeFragment">
 
@@ -25,26 +24,26 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_marginTop="21dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:paddingStart="8dp"
-                android:paddingEnd="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
                 android:paddingBottom="1dp"
                 >
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:textStyle="bold"
                     android:text="Top IMDB Movies"/>
 
                 <LinearLayout
@@ -52,40 +51,46 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/seeAll1"
                         android:gravity="end"
+                        android:src="@drawable/baseline_chevron_right_24"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="See All"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
 
                 </LinearLayout>
 
             </LinearLayout>
 
 
-            <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_Top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+
                 />
 
 
             <LinearLayout
-                android:layout_marginTop="30dp"
+                android:paddingStart="8dp"
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:paddingBottom="1dp"
+                >
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:textStyle="bold"
                     android:text="Popular Movies"/>
 
                 <LinearLayout
@@ -93,14 +98,15 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/seeAll2"
                         android:gravity="end"
+                        android:src="@drawable/baseline_chevron_right_24"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="See All"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
 
                 </LinearLayout>
 
@@ -115,36 +121,41 @@
 
 
             <LinearLayout
-                android:padding="8dp"
+                android:paddingStart="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:paddingBottom="1dp"
+                >
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:textStyle="bold"
-                    android:text="Latest Movies"/>
+                    android:text="Top IMDB Movies"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/seeAll3"
                         android:gravity="end"
+                        android:src="@drawable/baseline_chevron_right_24"
                         android:layout_marginEnd="4dp"
                         android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="See All"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
 
                 </LinearLayout>
 
             </LinearLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:nestedScrollingEnabled="false"

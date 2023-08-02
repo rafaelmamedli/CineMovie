@@ -42,5 +42,15 @@ class MovieRepositoryImp @Inject constructor(private val apiService: ApiService)
         }
     }
 
+    override suspend fun getMoviesByName(movieName: String): Flow<Resource<Movie>> = flow{
+        emit(Resource.loading(null))
+        val response = apiService.getSearch(movieName)
+        if (response.isSuccessful) {
+            emit(Resource.success(response.body()))
+        } else {
+            emit(Resource.error("Error search movie",null))
+        }
+    }
+
 
 }

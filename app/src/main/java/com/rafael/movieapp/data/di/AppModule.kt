@@ -3,8 +3,8 @@ package com.rafael.movieapp.data.di
 import android.content.Context
 import androidx.room.Room
 import com.example.projectmoviecatch.data.retrofit.ApiService
-import com.rafael.bodyfattracker.data.repo.FavMoviesRepository
-import com.rafael.bodyfattracker.data.repo.FavMoviesRepositoryImpl
+import com.rafael.movieapp.data.repository.local.FavMoviesRepository
+import com.rafael.movieapp.data.repository.local.FavMoviesRepositoryImpl
 import com.rafael.movieapp.data.room.AppDatabase
 import com.rafael.bodyfattracker.data.room.MovieDao
 import com.rafael.movieapp.data.util.BASE_URL

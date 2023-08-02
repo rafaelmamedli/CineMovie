@@ -6,16 +6,19 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="8dp"
     android:layout_marginBottom="10dp"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:background="@drawable/round_backgorund"
+    android:backgroundTint="@color/black_30">
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="342px"
         android:layout_height="513px"
+        android:layout_margin="8dp"
         android:elevation="2dp"
         app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -78,12 +81,14 @@
 
     <ImageView
         android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_delete_24"
+        android:layout_width="32dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="16dp"
+        android:src="@drawable/baseline_delete_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

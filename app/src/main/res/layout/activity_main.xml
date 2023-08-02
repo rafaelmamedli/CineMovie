@@ -27,6 +27,6 @@
         android:orientation="vertical"
         app:cnb_menuResource="@menu/bottom_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/purple_200"
+        android:background="@color/black_30"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

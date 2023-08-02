@@ -134,9 +134,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun getAdapters() {
-        val horizontal =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val horizontal = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val vertical = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val horizontal2 = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
 
         adapterPopular = PopularMovieAdapter(listPopularMovies)
         adapterRecent = RecentMovieAdapter(listRecentMovies, true)
@@ -145,16 +146,11 @@ class HomeFragment : Fragment() {
         binding.apply {
             recyclerViewRecent.layoutManager = vertical
             recyclerViewPopular.layoutManager = horizontal
+            recyclerViewTop.layoutManager = horizontal2
 
             recyclerViewPopular.adapter = adapterPopular
             recyclerViewRecent.adapter = adapterRecent
-
-            recyclerViewTop.apply {
-                adapter = adapterTopImdb
-                set3DItem(true)
-                setAlpha(true)
-                setInfinite(true)
-            }
+            recyclerViewTop.adapter = adapterTopImdb
         }
     }
 

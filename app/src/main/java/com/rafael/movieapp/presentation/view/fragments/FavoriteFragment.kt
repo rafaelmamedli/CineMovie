@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.local.FavMovies
-import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.Status
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
@@ -19,7 +16,6 @@ import com.rafael.movieapp.databinding.FragmentFavoriteBinding
 import com.rafael.movieapp.presentation.view.adapter.FavouriteAdapter
 import com.rafael.movieapp.presentation.viewmodel.LocalViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 

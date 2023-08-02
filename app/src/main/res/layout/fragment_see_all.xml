@@ -6,6 +6,8 @@
     tools:context=".presentation.view.fragments.SeeAllFragment">
 
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:padding="12dp"
         android:id="@+id/recyclerView_AllMovies"
