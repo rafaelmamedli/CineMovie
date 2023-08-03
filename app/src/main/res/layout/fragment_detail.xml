@@ -21,16 +21,25 @@
             android:layout_height="513px"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ededede"
+            android:src="@drawable/background"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btnFav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_favorite_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <CheckBox
+                android:layout_marginStart="8dp"
+                android:layout_gravity="center"
+                android:id="@+id/btnFav"
+                android:layout_width="wrap_content"
+                app:useMaterialThemeColors="false"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_fav_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
 
 
         <ImageView

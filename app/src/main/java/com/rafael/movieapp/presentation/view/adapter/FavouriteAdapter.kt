@@ -13,6 +13,8 @@ class FavouriteAdapter(private val list: MutableList<FavMovies>) :
     RecyclerView.Adapter<FavouriteAdapter.ProductViewHolder>() {
 
     private var itemClickListener: ((FavMovies) -> Unit)? = null
+    private var deleteClickListener: ((FavMovies) -> Unit)? = null
+
 
     inner class ProductViewHolder(private val binding: FavMovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -29,6 +31,10 @@ class FavouriteAdapter(private val list: MutableList<FavMovies>) :
                 val formattedDate = data.release_date?.let { DateConverter.formatDate(it) }
                 txtDate.text = formattedDate
                 btnDelete.setOnClickListener {
+                    deleteClickListener?.invoke(data)
+                }
+
+                itemView.setOnClickListener {
                     itemClickListener?.invoke(data)
                 }
 
@@ -60,5 +66,8 @@ class FavouriteAdapter(private val list: MutableList<FavMovies>) :
 
     fun setItemClickListener(listener: (FavMovies) -> Unit) {
         itemClickListener = listener
+    }
+    fun deleteItemClickListener(listener: (FavMovies) -> Unit) {
+        deleteClickListener = listener
     }
 }

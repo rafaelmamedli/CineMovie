@@ -22,6 +22,11 @@ interface MovieDao {
     suspend fun update(favMovie: FavMovies)
 
     @Query("SELECT * FROM fav_movies")
-     fun getAllFavMovies(): Flow<MutableList<FavMovies>>
+      fun getAllFavMovies(): Flow<MutableList<FavMovies>>
+
+    @Query("SELECT * FROM fav_movies WHERE title = :title")
+     fun getFavMovieByTitle(title: String): Flow<FavMovies?>
+
+
 }
 

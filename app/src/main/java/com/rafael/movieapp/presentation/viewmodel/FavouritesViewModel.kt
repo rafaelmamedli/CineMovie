@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class LocalViewModel @Inject constructor(
+class FavouritesViewModel @Inject constructor(
     private val useCaseAddFavMovie: InsertFavouritesUseCase,
     private val useCaseGetFavMovies: GetAllFavouritesUseCase,
     private val useCaseDeleteMovie: DeleteFavouritesUseCase
@@ -25,10 +25,7 @@ class LocalViewModel @Inject constructor(
 
 ) {
 
-    private val _addFavMovie: MutableStateFlow<Resource<FavMovies>> =
-        MutableStateFlow(Resource.loading(null))
-    val addFavMovie: StateFlow<Resource<FavMovies>>
-        get() = _addFavMovie
+
 
 
 
@@ -40,11 +37,6 @@ class LocalViewModel @Inject constructor(
 
     init {
         getAllFavMovies()
-    }
-
-
-    fun addFavMovie(favMovie:FavMovies) = viewModelScope.launch(Dispatchers.IO) {
-        useCaseAddFavMovie.insertFavMovieUseCase(favMovie)
     }
 
     fun deleteFavMovie(favMovie:FavMovies) = viewModelScope.launch(Dispatchers.IO) {

@@ -11,6 +11,10 @@ import com.rafael.movieapp.databinding.SearchMovieItemBinding
 class SearchAdapter(private val list: MutableList<Result>): RecyclerView.Adapter<SearchAdapter.ProductViewHolder>() {
 
 
+
+    private var itemClickListener: ((Result) -> Unit)? = null
+
+
     inner class ProductViewHolder(private val binding: SearchMovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -20,8 +24,10 @@ class SearchAdapter(private val list: MutableList<Result>): RecyclerView.Adapter
                 Glide.with(posterSearch)
                     .load("https://image.tmdb.org/t/p/w342/" + data.poster_path)
                     .into(posterSearch)
-
-
+                    txtImdb.text = data.vote_average.toString()
+                    itemView.setOnClickListener {
+                        itemClickListener?.invoke(data)
+                    }
 
             }
         }
@@ -43,5 +49,9 @@ class SearchAdapter(private val list: MutableList<Result>): RecyclerView.Adapter
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val item = list[position]
         holder.bind(item)
+    }
+
+    fun setItemClickListener(listener: (Result) -> Unit) {
+        itemClickListener = listener
     }
 }

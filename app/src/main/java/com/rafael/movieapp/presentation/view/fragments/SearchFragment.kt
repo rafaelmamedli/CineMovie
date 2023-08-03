@@ -14,6 +14,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.Status
@@ -62,8 +63,20 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         adapter = SearchAdapter(list)
         binding.recyclerViewSearch.adapter = adapter
         observe()
+        toDetail()
         setHasOptionsMenu(true)
     }
+
+    private fun toDetail(){
+        adapter.setItemClickListener {
+            findNavController().navigate(
+                R.id.action_searchFragment_to_detailFragment,Bundle().apply {
+                    putString("type", "searched_movie")
+                    putParcelable("searched", it)
+
+                }
+            )
+        }}
 
     private fun observe() {
         lifecycleScope.launch {
