@@ -16,7 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.remote.Movie
 import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.util.POPULAR
+import com.rafael.movieapp.data.util.POPULAR_MOVIE
+import com.rafael.movieapp.data.util.RECENT
+import com.rafael.movieapp.data.util.RECENT_MOVIE
 import com.rafael.movieapp.data.util.Status
+import com.rafael.movieapp.data.util.TOP_RATED
+import com.rafael.movieapp.data.util.TOP_RATED_MOVIE
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
 import com.rafael.movieapp.data.util.toast
@@ -26,6 +32,7 @@ import com.rafael.movieapp.presentation.view.adapter.PopularMovieAdapter
 import com.rafael.movieapp.presentation.view.adapter.RecentMovieAdapter
 import com.rafael.movieapp.presentation.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -71,8 +78,8 @@ class HomeFragment : Fragment() {
         adapterPopular.setItemClickListener {
             findNavController().navigate(
                 R.id.action_homeFragment_to_detailFragment,Bundle().apply {
-                    putString("type", "popular_movie")
-                    putParcelable("popular", it)
+                    putString("type", POPULAR_MOVIE)
+                    putParcelable(POPULAR, it)
 
                 }
             )
@@ -81,8 +88,8 @@ class HomeFragment : Fragment() {
         adapterRecent.setItemClickListener {
             findNavController().navigate(
                 R.id.action_homeFragment_to_detailFragment,Bundle().apply {
-                    putString("type", "recent_movie")
-                    putParcelable("recent", it)
+                    putString("type", RECENT_MOVIE)
+                    putParcelable(RECENT, it)
 
                 }
             )
@@ -91,8 +98,8 @@ class HomeFragment : Fragment() {
         adapterTopImdb.setItemClickListener {
             findNavController().navigate(
                 R.id.action_homeFragment_to_detailFragment,Bundle().apply {
-                    putString("type", "top_rated_movie")
-                    putParcelable("top_rated", it)
+                    putString("type", TOP_RATED_MOVIE)
+                    putParcelable(TOP_RATED, it)
 
                 }
             )
@@ -107,8 +114,8 @@ class HomeFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_homeFragment_to_seeAllFragment,
                 Bundle().apply {
-                    putString("type", "top_rated_movie")
-                    putParcelable("top_rated", objectTopRated)
+                    putString("type", TOP_RATED_MOVIE)
+                    putParcelable(TOP_RATED, objectTopRated)
 
                 })
 
@@ -117,8 +124,8 @@ class HomeFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_homeFragment_to_seeAllFragment,
                 Bundle().apply {
-                    putString("type", "popular_movie")
-                    putParcelable("popular", objectPopular)
+                    putString("type", POPULAR_MOVIE)
+                    putParcelable(POPULAR, objectPopular)
 
                 })
         }
@@ -127,8 +134,8 @@ class HomeFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_homeFragment_to_seeAllFragment,
                 Bundle().apply {
-                    putString("type", "recent_movie")
-                    putParcelable("recent", objectRecent)
+                    putString("type", RECENT_MOVIE)
+                    putParcelable(RECENT, objectRecent)
 
                 })
         }
@@ -159,45 +166,51 @@ class HomeFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun observeData() {
         lifecycleScope.launch {
-            viewModel.popularMovieList.collect { resource ->
-                when (resource.status) {
-                    Status.LOADING -> {
-                        binding.progressBar.show()
-                    }
-
-                    Status.SUCCESS -> {
-                        val currentDateTime = LocalDateTime.now()
-                        Log.d("TIME", currentDateTime.toString())
-
-
-                        binding.progressBar.gone()
-                        listPopularMovies.clear()
-                        resource.data?.results?.let { movieList ->
-                            listPopularMovies.addAll(movieList)
-                            adapterPopular.notifyDataSetChanged()
-                            objectPopular = resource.data
+           val job1 = async {
+                viewModel.popularMovieList.collect { resource ->
+                    when (resource.status) {
+                        Status.LOADING -> {
+                            binding.progressBar.show()
                         }
 
+                        Status.SUCCESS -> {
+                            val currentDateTime = LocalDateTime.now()
+                            Log.d("TIME", currentDateTime.toString())
+                            binding.progressBar.gone()
 
-                    }
+                            listPopularMovies.clear()
+                            resource.data?.results?.let { movieList ->
+                                listPopularMovies.addAll(movieList)
+                                objectPopular = resource.data
+                            }
+                            adapterPopular.notifyDataSetChanged()
 
-                    Status.ERROR -> {
-                        toast(resource.message)
+                            toast(listPopularMovies.toString())
+
+
+                        }
+
+                        Status.ERROR -> {
+                            toast(resource.message)
+                        }
                     }
                 }
             }
-        }
 
-        lifecycleScope.launch {
+
+
+       val job2 =  async {
             viewModel.recentMovieList.collect { resource ->
+
                 when (resource.status) {
                     Status.LOADING -> {
+
                     }
 
                     Status.SUCCESS -> {
+
                         val currentDateTime = LocalDateTime.now()
                         Log.d("TIME", "Recent" + currentDateTime.toString())
-
                         listRecentMovies.clear()
                         resource.data?.results?.let { movieListPopular ->
                             val sortedDataForDate =
@@ -206,6 +219,8 @@ class HomeFragment : Fragment() {
                             objectRecent = resource.data
 
                         }
+                        adapterRecent.notifyDataSetChanged()
+
                     }
 
                     Status.ERROR -> {
@@ -215,23 +230,25 @@ class HomeFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launch {
+       val job3 = async {
             viewModel.topRatedMovieList.collect { resource ->
                 when (resource.status) {
                     Status.LOADING -> {
+
                     }
 
                     Status.SUCCESS -> {
+
                         val currentDateTime = LocalDateTime.now()
                         Log.d("TIME", "Top" + currentDateTime.toString())
-
                         listTopRated.clear()
                         resource.data?.results?.let { movieListTopRated ->
                             listTopRated.addAll(movieListTopRated)
-                            adapterTopImdb.notifyDataSetChanged()
                             objectTopRated = resource.data
 
                         }
+                        adapterTopImdb.notifyDataSetChanged()
+
 
 
                     }
@@ -241,8 +258,18 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-        }
 
+
+        }
+            job1.await()
+            job2.await()
+            job3.await()
+
+
+
+
+
+        }
     }
 
 

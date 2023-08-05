@@ -7,6 +7,8 @@ import com.rafael.movieapp.data.repository.local.FavMoviesRepository
 import com.rafael.movieapp.data.repository.local.FavMoviesRepositoryImpl
 import com.rafael.movieapp.data.room.AppDatabase
 import com.rafael.bodyfattracker.data.room.MovieDao
+import com.rafael.movieapp.data.repository.remote.MovieRepository
+import com.rafael.movieapp.data.repository.remote.MovieRepositoryImp
 import com.rafael.movieapp.data.util.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -36,6 +38,9 @@ object AppModule {
             .build()
     }
 
+
+
+
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
@@ -51,8 +56,15 @@ object AppModule {
     }
 
     @Provides
+    @Singleton
     fun provideFavMoviesRepository(movieDao: MovieDao): FavMoviesRepository {
         return FavMoviesRepositoryImpl(movieDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieRepository(apiService: ApiService):MovieRepository {
+        return MovieRepositoryImp(apiService)
     }
 
 

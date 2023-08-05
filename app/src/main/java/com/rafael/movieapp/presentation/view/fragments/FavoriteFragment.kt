@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.local.FavMovies
+import com.rafael.movieapp.data.util.FAVOURITE
+import com.rafael.movieapp.data.util.FAVOURITE_MOVIE
 import com.rafael.movieapp.data.util.Status
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
@@ -72,8 +74,8 @@ class FavoriteFragment : Fragment() {
         adapter.setItemClickListener {
             findNavController().navigate(
                 R.id.action_favoriteFragment_to_detailFragment, Bundle().apply {
-                    putString("type", "favourite_movie")
-                    putParcelable("favourite", it)
+                    putString("type", FAVOURITE_MOVIE)
+                    putParcelable(FAVOURITE, it)
 
                 }
             )
@@ -91,7 +93,7 @@ class FavoriteFragment : Fragment() {
                     resource.data?.let {
                         binding.progressBar.gone()
                         listFavMovies.clear()
-                        listFavMovies.addAll(it)
+                        listFavMovies.addAll(it.reversed())
                         adapter.notifyDataSetChanged()
 
                         //  toast(it.size.toString())

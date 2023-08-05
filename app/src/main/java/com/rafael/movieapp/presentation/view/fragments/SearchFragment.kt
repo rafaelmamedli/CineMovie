@@ -17,6 +17,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.util.SEARCHED
+import com.rafael.movieapp.data.util.SEARCHED_MOVIE
 import com.rafael.movieapp.data.util.Status
 import com.rafael.movieapp.data.util.toast
 import com.rafael.movieapp.databinding.FragmentSearchBinding
@@ -71,8 +73,8 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         adapter.setItemClickListener {
             findNavController().navigate(
                 R.id.action_searchFragment_to_detailFragment,Bundle().apply {
-                    putString("type", "searched_movie")
-                    putParcelable("searched", it)
+                    putString("type", SEARCHED_MOVIE)
+                    putParcelable(SEARCHED, it)
 
                 }
             )
@@ -124,10 +126,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        toast(newText)
-
         lifecycleScope.launch {
             if (newText.isNullOrEmpty()) {
+                // If the search query is empty, display popular movies
                 list.clear()
                 if (popularMoviesLoaded) {
                     list.addAll(popularMovieList)
@@ -136,6 +137,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                     viewModel.getPopularMovies()
                 }
             } else {
+                // If there's a search query, fetch movies by name
                 newText?.let { viewModel.getMovieByName(it) }
             }
         }

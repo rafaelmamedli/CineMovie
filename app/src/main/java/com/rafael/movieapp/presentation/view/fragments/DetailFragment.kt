@@ -10,8 +10,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.util.ALL
+import com.rafael.movieapp.data.util.ALL_MOVIE
 import com.rafael.movieapp.data.util.DateConverter
+import com.rafael.movieapp.data.util.FAVOURITE
+import com.rafael.movieapp.data.util.FAVOURITE_MOVIE
+import com.rafael.movieapp.data.util.POPULAR
+import com.rafael.movieapp.data.util.POPULAR_MOVIE
+import com.rafael.movieapp.data.util.RECENT
+import com.rafael.movieapp.data.util.RECENT_MOVIE
+import com.rafael.movieapp.data.util.SEARCHED
+import com.rafael.movieapp.data.util.SEARCHED_MOVIE
 import com.rafael.movieapp.data.util.Status
+import com.rafael.movieapp.data.util.TOP_RATED
+import com.rafael.movieapp.data.util.TOP_RATED_MOVIE
 import com.rafael.movieapp.data.util.glide
 import com.rafael.movieapp.data.util.hide
 import com.rafael.movieapp.data.util.toRoomResult
@@ -91,17 +103,17 @@ class DetailFragment : Fragment() {
     private fun getObjects() {
         val type = arguments?.getString("type", null)
         val result: Result? = when (type) {
-            "popular_movie" -> arguments?.getParcelable("popular")
-            "recent_movie" -> arguments?.getParcelable("recent")
-            "top_rated_movie" -> arguments?.getParcelable("top_rated")
-            "all_movie" -> arguments?.getParcelable("all")
-            "searched_movie" -> arguments?.getParcelable("searched")
+            POPULAR_MOVIE -> arguments?.getParcelable(POPULAR)
+            RECENT_MOVIE -> arguments?.getParcelable(RECENT)
+            TOP_RATED_MOVIE -> arguments?.getParcelable(TOP_RATED)
+            ALL_MOVIE -> arguments?.getParcelable(ALL)
+            SEARCHED_MOVIE -> arguments?.getParcelable(SEARCHED)
             else -> null
         }
         val favMovie: FavMovies? =
-            type.takeIf { it == "favourite_movie" }?.let {
+            type.takeIf { it == FAVOURITE_MOVIE }?.let {
                 binding.btnFav.hide()
-                arguments?.getParcelable("favourite")
+                arguments?.getParcelable(FAVOURITE)
             }
 
 

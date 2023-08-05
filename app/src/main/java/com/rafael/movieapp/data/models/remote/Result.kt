@@ -16,5 +16,5 @@ data class Result(
     val title: String? = null,
     val vote_average: Double? = null,
     var genrestring: String? = null,
-) : Parcelable
+) :Parcelable
 
