@@ -1,6 +1,7 @@
 package com.rafael.movieapp.presentation.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.util.FAVOURITE
 import com.rafael.movieapp.data.util.FAVOURITE_MOVIE
 import com.rafael.movieapp.data.util.Status
+import com.rafael.movieapp.data.util.disableBackPressed
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
 import com.rafael.movieapp.data.util.toast
@@ -26,31 +28,24 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
-
     private val viewModel: FavouritesViewModel by viewModels()
     lateinit var adapter: FavouriteAdapter
     lateinit var binding: FragmentFavoriteBinding
     private var listFavMovies = mutableListOf<FavMovies>()
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentFavoriteBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         adapter = FavouriteAdapter(listFavMovies)
         binding.recyclerViewFavorite.adapter = adapter
-
+        disableBackPressed()
 
     }
 
@@ -94,15 +89,16 @@ class FavoriteFragment : Fragment() {
                         binding.progressBar.gone()
                         listFavMovies.clear()
                         listFavMovies.addAll(it.reversed())
+                        if (listFavMovies.isEmpty()) {
+                            binding.emptyList.show()
+                        }
                         adapter.notifyDataSetChanged()
 
-                        //  toast(it.size.toString())
                     }
                 }
 
                 Status.ERROR -> {
-
-                    toast(resource.message)
+                    Log.e("Error",resource.message.toString())
                 }
             }
 

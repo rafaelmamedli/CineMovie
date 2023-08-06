@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".presentation.view.fragments.HomeFragment">
 
@@ -13,8 +14,16 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:padding="180dp"
-           >
-        </ProgressBar>
+           />
+
+    <TextView
+        android:visibility="gone"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="Internet Problem"
+        android:id="@+id/txtErrorMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 
@@ -30,6 +39,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_marginTop="12dp"
                 android:paddingStart="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -55,7 +65,6 @@
                         android:id="@+id/seeAll1"
                         android:gravity="end"
                         android:src="@drawable/baseline_chevron_right_24"
-                        android:layout_marginEnd="4dp"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -67,17 +76,20 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/topimdb_movie_item"
+                android:gravity="center"
+                android:foregroundGravity="center"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
                 android:id="@+id/recyclerView_Top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-
                 />
 
 
             <LinearLayout
                 android:paddingStart="8dp"
-
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
@@ -91,7 +103,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:text="Popular Movies"/>
+                    android:text="Most Popular "/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -102,7 +114,6 @@
                         android:id="@+id/seeAll2"
                         android:gravity="end"
                         android:src="@drawable/baseline_chevron_right_24"
-                        android:layout_marginEnd="4dp"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -113,9 +124,12 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal"
                 android:layout_marginTop="8dp"
                 android:id="@+id/recyclerView_Popular"
                 android:padding="4dp"
+                tools:listitem="@layout/popular_movie_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -135,7 +149,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:text="Top IMDB Movies"/>
+                    android:text="Recent "/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -146,7 +160,6 @@
                         android:id="@+id/seeAll3"
                         android:gravity="end"
                         android:src="@drawable/baseline_chevron_right_24"
-                        android:layout_marginEnd="4dp"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -158,6 +171,8 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/recent_movie_item"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:nestedScrollingEnabled="false"
                 android:id="@+id/recyclerView_Recent"
                 android:padding="6dp"

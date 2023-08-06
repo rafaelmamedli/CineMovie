@@ -1,5 +1,6 @@
 package com.rafael.movieapp.data.di
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.example.projectmoviecatch.data.retrofit.ApiService
@@ -66,6 +67,9 @@ object AppModule {
     fun provideMovieRepository(apiService: ApiService):MovieRepository {
         return MovieRepositoryImp(apiService)
     }
+
+    @Provides
+    fun provideContext(application: Application): Context = application.applicationContext
 
 
 

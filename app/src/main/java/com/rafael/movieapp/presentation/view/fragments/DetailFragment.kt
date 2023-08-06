@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.ALL
@@ -24,8 +25,10 @@ import com.rafael.movieapp.data.util.SEARCHED_MOVIE
 import com.rafael.movieapp.data.util.Status
 import com.rafael.movieapp.data.util.TOP_RATED
 import com.rafael.movieapp.data.util.TOP_RATED_MOVIE
+import com.rafael.movieapp.data.util.formatDate
 import com.rafael.movieapp.data.util.glide
 import com.rafael.movieapp.data.util.hide
+import com.rafael.movieapp.data.util.showSnackBar
 import com.rafael.movieapp.data.util.toRoomResult
 import com.rafael.movieapp.data.util.toast
 import com.rafael.movieapp.databinding.FragmentDetailBinding
@@ -81,8 +84,8 @@ class DetailFragment : Fragment() {
             if (isChecked) {
                 if (!isMovieInFavorites) {
                     objMovie?.let { viewModel.addFavMovie(it.toRoomResult()) }
-                    toast("Added to favorites")
                     isMovieInFavorites = true
+                    showSnackBar("Added to favorite")
                 }
             } else {
                 if (isMovieInFavorites) {
@@ -90,7 +93,7 @@ class DetailFragment : Fragment() {
                         viewModel.getFavMovies.value.data?.find { it.title == objMovie?.title }
                             ?.let {
                                 viewModel.deleteFavMovie(it)
-                                toast("Removed from favorites")
+                                showSnackBar("Removed from favorites")
                                 isMovieInFavorites = false
                             }
                 }
@@ -141,7 +144,7 @@ class DetailFragment : Fragment() {
                 posterImage.glide(it.poster_path)
                 val imdb = it.vote_average?.toFloat()
                 imdb?.let { ratingBar.rating = (it / 2) }
-                val formattedDate = it.release_date?.let { DateConverter.formatDate(it) }
+                val formattedDate = it.release_date?.formatDate()
                 txtDate.text = formattedDate
             }
         }

@@ -8,8 +8,8 @@ import com.rafael.movieapp.R
 import com.rafael.movieapp.databinding.TopimdbMovieItemBinding
 import com.rafael.movieapp.data.models.remote.Result
 
-class CarouselAdapter(private val list: MutableList<Result>) :
-    RecyclerView.Adapter<CarouselAdapter.CarouselViewHolder>() {
+class TopImdbAdapter(private val list: MutableList<Result>) :
+    RecyclerView.Adapter<TopImdbAdapter.CarouselViewHolder>() {
 
     private var itemClickListener: ((Result) -> Unit)? = null
 
@@ -19,9 +19,9 @@ class CarouselAdapter(private val list: MutableList<Result>) :
             binding.apply {
 
                 txtImdb.text = data.vote_average.toString()
-                  txtTitle.text = data.title
+                txtTitle.text = data.title
                 Glide.with(posterImage)
-                    .load("https://image.tmdb.org/t/p/w342/${data.poster_path}")
+                    .load("https://image.tmdb.org/t/p/w342/${data.backdrop_path}")
                     .into(binding.posterImage)
                 itemView.setOnClickListener {
                     itemClickListener?.invoke(data)
@@ -43,7 +43,8 @@ class CarouselAdapter(private val list: MutableList<Result>) :
     }
 
     override fun getItemCount(): Int {
-        return minOf(list.size, 8)    }
+        return minOf(list.size, 8)
+    }
 
     fun setItemClickListener(listener: (Result) -> Unit) {
         itemClickListener = listener

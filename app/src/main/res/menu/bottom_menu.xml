@@ -5,17 +5,17 @@
         android:id="@+id/home"
         android:icon="@drawable/baseline_home_24"
         android:title="Home"
-        app:cnb_iconColor="@color/white"/>
+        app:cnb_iconColor="@color/orange"/>
 
     <item
         android:id="@+id/search"
         android:icon="@drawable/baseline_search_24"
         android:title="Search"
-        app:cnb_iconColor="@color/white"/>
+        app:cnb_iconColor="@color/orange"/>
     <item
         android:id="@+id/favourites"
         android:icon="@drawable/baseline_favorite_24"
         android:title="Favourites"
-        app:cnb_iconColor="@color/white"/>
+        app:cnb_iconColor="@color/orange"/>
 
 </menu>

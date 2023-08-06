@@ -1,13 +1,9 @@
 package com.rafael.movieapp.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.Movie
 import com.rafael.movieapp.data.util.Resource
-import com.rafael.movieapp.domein.use_case.local.GetAllFavouritesUseCase
-import com.rafael.movieapp.domein.use_case.remote.GetMovieByNameUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetPopularMoviesUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetRecentMoviesUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetTopRatedMovies
@@ -15,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -28,7 +23,6 @@ class HomeViewModel @Inject constructor(
     private val useCasePopular: GetPopularMoviesUseCase,
     private val useCaseRecent: GetRecentMoviesUseCase,
     private val useCaseTopRated: GetTopRatedMovies,
-    private val useCaseGetFavMovies: GetAllFavouritesUseCase
 ) :
     ViewModel() {
 
@@ -48,19 +42,16 @@ class HomeViewModel @Inject constructor(
     val topRatedMovieList: StateFlow<Resource<Movie>>
         get() = _topRatedMovieList
 
-    private val _getFavMovies: MutableStateFlow<Resource<MutableList<FavMovies>>> =
-        MutableStateFlow(Resource.loading(null))
-    val getFavMovies: StateFlow<Resource<MutableList<FavMovies>>>
-        get() = _getFavMovies
-
-
-
 
     init {
+        refreshData()
+    }
+
+
+    fun refreshData() {
         getPopularMovies("1")
         getRecentMovies("1")
         getTopRatedMovies("1")
-        Log.d("TAG", "ViewModel")
     }
 
     private fun getPopularMovies(page: String) {
@@ -102,8 +93,8 @@ class HomeViewModel @Inject constructor(
 
 
     private fun getTopRatedMovies(page: String) {
-
-        viewModelScope.launch(Dispatchers.Main
+        viewModelScope.launch(
+            Dispatchers.Main
         ) {
             try {
                 val result = withContext(Dispatchers.IO) {
@@ -117,28 +108,9 @@ class HomeViewModel @Inject constructor(
 
                 _topRatedMovieList.value =
                     Resource.error(e.localizedMessage ?: "Unknown error", null)
-
-
             }
 
         }
     }
-
-
-    private fun getAllFavMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
-            useCaseGetFavMovies.getAllFavMovieUseCase()
-                .catch { e ->
-                    _getFavMovies.value = Resource.error("Error getting fav movies", null)
-                }
-                .collect { favMovies ->
-                    _getFavMovies.value = Resource.success(favMovies)
-                }
-        }
-    }
-
-
-
-
 
 }

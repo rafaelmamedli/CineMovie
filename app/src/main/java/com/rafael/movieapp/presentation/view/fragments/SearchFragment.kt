@@ -20,6 +20,9 @@ import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.SEARCHED
 import com.rafael.movieapp.data.util.SEARCHED_MOVIE
 import com.rafael.movieapp.data.util.Status
+import com.rafael.movieapp.data.util.disableBackPressed
+import com.rafael.movieapp.data.util.gone
+import com.rafael.movieapp.data.util.show
 import com.rafael.movieapp.data.util.toast
 import com.rafael.movieapp.databinding.FragmentSearchBinding
 import com.rafael.movieapp.presentation.view.adapter.SearchAdapter
@@ -51,7 +54,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                 val searchView = item.actionView as SearchView
                 searchView.setOnQueryTextListener(this@SearchFragment)
             }
-
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return false
             }
@@ -66,6 +68,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.recyclerViewSearch.adapter = adapter
         observe()
         toDetail()
+        disableBackPressed()
         setHasOptionsMenu(true)
     }
 
@@ -75,7 +78,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                 R.id.action_searchFragment_to_detailFragment,Bundle().apply {
                     putString("type", SEARCHED_MOVIE)
                     putParcelable(SEARCHED, it)
-
                 }
             )
         }}
@@ -85,9 +87,14 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
             viewModel.popularMovieList.collect { resource ->
                 when (resource.status) {
                     Status.LOADING -> {
+                        binding.progressBar.show()
+
                     }
 
                     Status.SUCCESS -> {
+                        binding.progressBar.gone()
+                        binding.txtErrorMessage.gone()
+
                         val movieList = resource.data?.results
                         if (movieList != null && !popularMoviesLoaded) {
                             popularMovieList.clear()
@@ -99,6 +106,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
 
                     Status.ERROR -> {
+                        binding.progressBar.gone()
+                        binding.txtErrorMessage.show()
+
                         toast(resource.message)
                     }
                 }

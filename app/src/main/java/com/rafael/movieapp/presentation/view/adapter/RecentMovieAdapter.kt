@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.DateConverter
+import com.rafael.movieapp.data.util.formatDate
 import com.rafael.movieapp.databinding.RecentMovieItemBinding
 
 
@@ -29,8 +30,7 @@ class RecentMovieAdapter(var list: MutableList<Result>,val isHomeScreen: Boolean
                     .load("https://image.tmdb.org/t/p/w342/" + data.poster_path)
                     .into(posterRecent)
 
-                val formattedDate = data.release_date?.let { DateConverter.formatDate(it) }
-                txtDate.text = formattedDate
+                txtDate.text = data.release_date?.formatDate()
                 itemView.setOnClickListener {
                     itemClickListener?.invoke(data)
                 }
