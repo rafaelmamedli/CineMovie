@@ -2,13 +2,13 @@ package com.rafael.movieapp.presentation.view.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
 import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.ALL
@@ -22,7 +22,7 @@ import com.rafael.movieapp.data.util.RECENT
 import com.rafael.movieapp.data.util.RECENT_MOVIE
 import com.rafael.movieapp.data.util.SEARCHED
 import com.rafael.movieapp.data.util.SEARCHED_MOVIE
-import com.rafael.movieapp.data.util.Status
+import com.rafael.movieapp.data.util.Status.*
 import com.rafael.movieapp.data.util.TOP_RATED
 import com.rafael.movieapp.data.util.TOP_RATED_MOVIE
 import com.rafael.movieapp.data.util.formatDate
@@ -30,7 +30,6 @@ import com.rafael.movieapp.data.util.glide
 import com.rafael.movieapp.data.util.hide
 import com.rafael.movieapp.data.util.showSnackBar
 import com.rafael.movieapp.data.util.toRoomResult
-import com.rafael.movieapp.data.util.toast
 import com.rafael.movieapp.databinding.FragmentDetailBinding
 import com.rafael.movieapp.presentation.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,13 +66,14 @@ class DetailFragment : Fragment() {
     private fun checkMovie() = lifecycleScope.launch {
         viewModel.getFavMovies.collect { resource ->
             when (resource.status) {
-                Status.SUCCESS -> {
+                SUCCESS -> {
                     isMovieInFavorites =
                         resource.data?.any { it.title == objMovie?.title } == true // Added this line
                     binding.btnFav.isChecked = isMovieInFavorites
                 }
 
-                else -> {}
+                ERROR -> Log.e("ERROR", resource.message.toString())
+                LOADING -> {}
             }
         }
 
@@ -89,12 +89,12 @@ class DetailFragment : Fragment() {
                 }
             } else {
                 if (isMovieInFavorites) {
-                    val value =
                         viewModel.getFavMovies.value.data?.find { it.title == objMovie?.title }
                             ?.let {
                                 viewModel.deleteFavMovie(it)
                                 showSnackBar("Removed from favorites")
                                 isMovieInFavorites = false
+
                             }
                 }
             }

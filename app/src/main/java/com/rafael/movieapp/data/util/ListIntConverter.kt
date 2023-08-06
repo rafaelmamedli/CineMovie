@@ -1,4 +1,4 @@
-package com.rafael.movieapp.data.models.local
+package com.rafael.movieapp.data.util
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

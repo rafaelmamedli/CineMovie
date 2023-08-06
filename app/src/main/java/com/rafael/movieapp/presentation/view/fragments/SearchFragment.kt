@@ -1,6 +1,7 @@
 package com.rafael.movieapp.presentation.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -20,6 +21,7 @@ import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.SEARCHED
 import com.rafael.movieapp.data.util.SEARCHED_MOVIE
 import com.rafael.movieapp.data.util.Status
+import com.rafael.movieapp.data.util.Status.*
 import com.rafael.movieapp.data.util.disableBackPressed
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
@@ -54,6 +56,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                 val searchView = item.actionView as SearchView
                 searchView.setOnQueryTextListener(this@SearchFragment)
             }
+
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return false
             }
@@ -72,29 +75,26 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         setHasOptionsMenu(true)
     }
 
-    private fun toDetail(){
+    private fun toDetail() {
         adapter.setItemClickListener {
             findNavController().navigate(
-                R.id.action_searchFragment_to_detailFragment,Bundle().apply {
+                R.id.action_searchFragment_to_detailFragment, Bundle().apply {
                     putString("type", SEARCHED_MOVIE)
                     putParcelable(SEARCHED, it)
                 }
             )
-        }}
+        }
+    }
 
     private fun observe() {
         lifecycleScope.launch {
             viewModel.popularMovieList.collect { resource ->
                 when (resource.status) {
-                    Status.LOADING -> {
-                        binding.progressBar.show()
+                    LOADING -> binding.progressBar.show()
 
-                    }
-
-                    Status.SUCCESS -> {
+                    SUCCESS -> {
                         binding.progressBar.gone()
                         binding.txtErrorMessage.gone()
-
                         val movieList = resource.data?.results
                         if (movieList != null && !popularMoviesLoaded) {
                             popularMovieList.clear()
@@ -105,12 +105,12 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                         }
                     }
 
-                    Status.ERROR -> {
+                    ERROR -> {
                         binding.progressBar.gone()
                         binding.txtErrorMessage.show()
-
                         toast(resource.message)
                     }
+
                 }
             }
         }
@@ -118,18 +118,23 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         lifecycleScope.launch {
             viewModel.movieByName.collect { resource ->
                 when (resource.status) {
-                    Status.SUCCESS -> {
+                    SUCCESS -> {
                         val searchedItems = resource.data?.results
                         list.clear()
                         searchedItems?.let { list.addAll(it) }
                         adapter.notifyDataSetChanged()
                     }
-                    else -> {
-                    }
+
+                    ERROR -> Log.e("Error",resource.data.toString())
+                    LOADING -> {}
                 }
             }
         }
     }
+
+
+
+
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         return false

@@ -2,29 +2,19 @@ package com.rafael.movieapp.data.util
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
-import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.local.FavMovies
-import com.rafael.movieapp.data.models.remote.Movie
 import com.rafael.movieapp.data.models.remote.Result
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
-
-fun goTo(it: View, id: Int) {
-    Navigation.findNavController(it).navigate(id)
-}
 
 
 fun View.hide() {
@@ -42,25 +32,6 @@ fun View.gone() {
 fun Fragment.toast(msg: String?) {
     Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
 }
-
-fun NavController.navigateWithBundle(actionId: Int, type: String, movie: Parcelable) {
-    navigate(
-        actionId, Bundle().apply {
-            putString("type", type)
-            putParcelable(type, movie)
-        }
-    )
-}
-
-fun NavController.toDetail(type: String, movie: Result) {
-    navigateWithBundle(R.id.action_homeFragment_to_detailFragment, type, movie)
-}
-
-fun NavController.toAllSee(type: String, movie: Movie) {
-    navigateWithBundle(R.id.action_homeFragment_to_seeAllFragment, type, movie )
-}
-
-
 
 fun Fragment.showSnackBar(msg: String?,) {
     view?.let {
@@ -96,11 +67,6 @@ fun Fragment.disableBackPressed() {
     }
     requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 }
-
-
-
-
-
 
 object DateConverter {
     @SuppressLint("NewApi")

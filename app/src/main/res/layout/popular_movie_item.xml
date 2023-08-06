@@ -73,16 +73,5 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 
-    <TextView
-        android:id="@+id/txtDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center_horizontal"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

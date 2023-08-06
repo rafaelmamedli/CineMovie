@@ -3,11 +3,11 @@ package com.rafael.movieapp.data.di
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.example.projectmoviecatch.data.retrofit.ApiService
+import com.rafael.movieapp.data.retrofit.ApiService
 import com.rafael.movieapp.data.repository.local.FavMoviesRepository
 import com.rafael.movieapp.data.repository.local.FavMoviesRepositoryImpl
 import com.rafael.movieapp.data.room.AppDatabase
-import com.rafael.bodyfattracker.data.room.MovieDao
+import com.rafael.movieapp.data.room.MovieDao
 import com.rafael.movieapp.data.repository.remote.MovieRepository
 import com.rafael.movieapp.data.repository.remote.MovieRepositoryImp
 import com.rafael.movieapp.data.util.BASE_URL
@@ -26,7 +26,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun getRetrofitServiceInstance(retrofit: Retrofit) :ApiService {
+    fun getRetrofitServiceInstance(retrofit: Retrofit) : ApiService {
         return retrofit.create(ApiService::class.java)
     }
 
@@ -38,9 +38,6 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
-
-
 
     @Provides
     @Singleton

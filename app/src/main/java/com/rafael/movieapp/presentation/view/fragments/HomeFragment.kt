@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,7 +23,7 @@ import com.rafael.movieapp.data.util.POPULAR
 import com.rafael.movieapp.data.util.POPULAR_MOVIE
 import com.rafael.movieapp.data.util.RECENT
 import com.rafael.movieapp.data.util.RECENT_MOVIE
-import com.rafael.movieapp.data.util.Status
+import com.rafael.movieapp.data.util.Status.*
 import com.rafael.movieapp.data.util.TOP_RATED
 import com.rafael.movieapp.data.util.TOP_RATED_MOVIE
 import com.rafael.movieapp.data.util.disableBackPressed
@@ -39,7 +37,6 @@ import com.rafael.movieapp.presentation.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 
 @AndroidEntryPoint
@@ -63,25 +60,23 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         val bottomBar = requireActivity().findViewById<ChipNavigationBar>(R.id.bottom_nav_bar)
         bottomBar.show()
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         getAdapters()
         observeData()
         goToSeeAll()
         toDetail()
         disableBackPressed()
-
-
     }
+
 
     private fun toDetail() {
         adapterPopular.setItemClickListener {
@@ -179,19 +174,13 @@ class HomeFragment : Fragment() {
         alertDialog.show()
     }
 
-
-    @SuppressLint("NewApi")
-    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("NotifyDataSetChanged")
     private fun observeData() {
         lifecycleScope.launch {
             val job1 = async {
                 viewModel.popularMovieList.collect { resource ->
                     when (resource.status) {
-                        Status.LOADING -> {
-                            binding.progressBar.show()
-                        }
-
-                        Status.SUCCESS -> {
+                        SUCCESS -> {
                             binding.progressBar.gone()
                             binding.nestedView.show()
                             binding.txtErrorMessage.gone()
@@ -204,12 +193,15 @@ class HomeFragment : Fragment() {
 
                         }
 
-                        Status.ERROR -> {
+                        ERROR -> {
                             binding.progressBar.gone()
                             binding.txtErrorMessage.show()
                             showAlertDialog()
-                            Log.e("ERROR",resource.message.toString())
+                            Log.e("ERROR", resource.message.toString())
                         }
+
+                        LOADING -> binding.progressBar.show()
+
                     }
                 }
             }
@@ -217,11 +209,9 @@ class HomeFragment : Fragment() {
 
             val job2 = async {
                 viewModel.recentMovieList.collect { resource ->
-
                     when (resource.status) {
-                        Status.LOADING -> {
-                        }
-                        Status.SUCCESS -> {
+                        LOADING -> {}
+                        SUCCESS -> {
                             listRecentMovies.clear()
                             resource.data?.results?.let { movieListPopular ->
                                 val sortedDataForDate =
@@ -231,9 +221,7 @@ class HomeFragment : Fragment() {
                             }
                             adapterRecent.notifyDataSetChanged()
                         }
-                        Status.ERROR -> {
-                            Log.e("ERROR",resource.message.toString())
-                        }
+                        ERROR -> Log.e("ERROR", resource.message.toString())
                     }
                 }
             }
@@ -241,11 +229,10 @@ class HomeFragment : Fragment() {
             val job3 = async {
                 viewModel.topRatedMovieList.collect { resource ->
                     when (resource.status) {
-                        Status.LOADING -> {
+                        LOADING -> {
                         }
-                        Status.SUCCESS -> {
-                            val currentDateTime = LocalDateTime.now()
-                            Log.d("TIME", "Top" + currentDateTime.toString())
+
+                        SUCCESS -> {
                             listTopRated.clear()
                             resource.data?.results?.let { movieListTopRated ->
                                 listTopRated.addAll(movieListTopRated)
@@ -253,14 +240,10 @@ class HomeFragment : Fragment() {
                             }
                             adapterTopImdb.notifyDataSetChanged()
                         }
-                        Status.ERROR -> {
-                            Log.e("ERROR",resource.message.toString())
 
-                        }
+                        ERROR -> Log.e("ERROR", resource.message.toString())
                     }
                 }
-
-
             }
             job1.await()
             job2.await()
@@ -268,6 +251,7 @@ class HomeFragment : Fragment() {
 
 
         }
+
     }
 
 

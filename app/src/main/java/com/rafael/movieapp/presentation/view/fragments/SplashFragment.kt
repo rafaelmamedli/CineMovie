@@ -1,6 +1,5 @@
 package com.rafael.movieapp.presentation.view.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,9 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.HandlerCompat.postDelayed
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.rafael.movieapp.R
 import com.rafael.movieapp.data.util.gone
@@ -25,7 +22,7 @@ class SplashFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentSplashBinding.inflate(layoutInflater)
         Handler(Looper.getMainLooper()).postDelayed({

@@ -7,6 +7,6 @@ import javax.inject.Inject
 class GetPopularMoviesUseCase @Inject constructor(
     private val repo: MovieRepository
 ){
-  suspend fun getPopularMoviesUseCase(page:String) = repo.getPopularMovies(page)
+  suspend fun getPopular(page:String) = repo.getPopularMovies(page)
 
 }

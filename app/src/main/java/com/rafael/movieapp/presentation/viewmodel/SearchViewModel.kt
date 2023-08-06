@@ -45,7 +45,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.Main) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCasePopular.getRecentMoviesUseCase("1")
+                    useCasePopular.getRecent("1")
                 }
                 result.collectLatest {
                     _popularMovieList.value = it
@@ -72,7 +72,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch (Dispatchers.Main) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCaseMovieByName.getMovieByNameUseCase(movieName)
+                    useCaseMovieByName.getMovie(movieName)
                 }
                 result.collectLatest {
                     Log.d("SEARCH",it.toString())

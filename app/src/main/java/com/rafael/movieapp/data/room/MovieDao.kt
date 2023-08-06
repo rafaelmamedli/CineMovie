@@ -1,4 +1,4 @@
-package com.rafael.bodyfattracker.data.room
+package com.rafael.movieapp.data.room
 
 import androidx.room.*
 import androidx.room.Dao

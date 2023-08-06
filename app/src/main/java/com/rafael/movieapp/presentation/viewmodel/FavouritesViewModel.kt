@@ -18,7 +18,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavouritesViewModel @Inject constructor(
-    private val useCaseAddFavMovie: InsertFavouritesUseCase,
     private val useCaseGetFavMovies: GetAllFavouritesUseCase,
     private val useCaseDeleteMovie: DeleteFavouritesUseCase
 ) :ViewModel(
@@ -40,12 +39,12 @@ class FavouritesViewModel @Inject constructor(
     }
 
     fun deleteFavMovie(favMovie:FavMovies) = viewModelScope.launch(Dispatchers.IO) {
-        useCaseDeleteMovie.deleteFavMovieUseCase(favMovie)
+        useCaseDeleteMovie.delete(favMovie)
     }
 
     private fun getAllFavMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            useCaseGetFavMovies.getAllFavMovieUseCase()
+            useCaseGetFavMovies.getAll()
                 .catch { e ->
                     _getFavMovies.value = Resource.error("Error getting fav movies", null)
                 }

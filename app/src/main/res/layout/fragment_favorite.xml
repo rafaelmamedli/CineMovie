@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="You didn't add any movies"
+        android:text="@string/you_didn_t_add_any_movies"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone" />
@@ -30,7 +30,6 @@
         android:id="@+id/recyclerView_Favorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="2dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/fav_movie_item" />
 

@@ -1,4 +1,4 @@
-package com.example.projectmoviecatch.data.retrofit
+package com.rafael.movieapp.data.retrofit
 
 import com.rafael.movieapp.data.models.remote.Movie
 import com.rafael.movieapp.data.util.API_KEY
@@ -7,8 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
-
-
     @GET("3/movie/popular?")
     suspend fun getPopularMovies(
         @Query("page") query: String,

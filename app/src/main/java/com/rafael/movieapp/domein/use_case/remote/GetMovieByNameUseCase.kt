@@ -7,6 +7,6 @@ class GetMovieByNameUseCase @Inject constructor(
     private val repo: MovieRepository
 ) {
 
-    suspend fun getMovieByNameUseCase(movieName:String) = repo.getMoviesByName(movieName)
+    suspend fun getMovie(movieName:String) = repo.getMoviesByName(movieName)
 
 }

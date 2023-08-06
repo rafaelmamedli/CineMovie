@@ -1,14 +1,13 @@
 package com.rafael.movieapp.data.repository.remote
 
 import com.rafael.movieapp.data.models.remote.Movie
-import com.example.projectmoviecatch.data.retrofit.ApiService
+import com.rafael.movieapp.data.retrofit.ApiService
 import com.rafael.movieapp.data.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class MovieRepositoryImp @Inject constructor(private val apiService: ApiService) : MovieRepository {
-
 
     override suspend fun getPopularMovies(page: String): Flow<Resource<Movie>> = flow {
         emit(Resource.loading(null))

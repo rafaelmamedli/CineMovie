@@ -58,7 +58,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.Main) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCasePopular.getPopularMoviesUseCase(page)
+                    useCasePopular.getPopular(page)
                 }
                 result.collectLatest {
                     _popularMovieList.value = it
@@ -77,7 +77,7 @@ class HomeViewModel @Inject constructor(
             try {
                 val result =
                     withContext(Dispatchers.IO) {
-                        useCaseRecent.getRecentMoviesUseCase(page)
+                        useCaseRecent.getRecent(page)
                     }
 
                 result.collectLatest {
@@ -98,7 +98,7 @@ class HomeViewModel @Inject constructor(
         ) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCaseTopRated.getTopRatedMoviesUseCase(page)
+                    useCaseTopRated.getTop(page)
                 }
 
                 result.collectLatest {
