@@ -13,7 +13,6 @@ import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.ALL
 import com.rafael.movieapp.data.util.ALL_MOVIE
-import com.rafael.movieapp.data.util.DateConverter
 import com.rafael.movieapp.data.util.FAVOURITE
 import com.rafael.movieapp.data.util.FAVOURITE_MOVIE
 import com.rafael.movieapp.data.util.POPULAR
@@ -130,8 +129,7 @@ class DetailFragment : Fragment() {
                 posterImage.glide(it.poster_path)
                 val imdb = it.vote_average?.toFloat()
                 imdb?.let { ratingBar.rating = (it / 2) }
-                val formattedDate = it.release_date?.let { DateConverter.formatDate(it) }
-                txtDate.text = formattedDate
+                txtDate.text = it.release_date.formatDate()
             }
         }
 

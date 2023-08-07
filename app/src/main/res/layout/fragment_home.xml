@@ -54,7 +54,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:text="Top IMDB Movies"/>
+                    android:text="@string/most_popular"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:text="Most Popular "/>
+                    android:text="@string/top_imdb_movies"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:text="Recent "/>
+                    android:text="Recent Movies "/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"

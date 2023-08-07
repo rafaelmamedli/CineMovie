@@ -14,6 +14,7 @@ import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.Result
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.util.Locale
 
 
@@ -68,20 +69,21 @@ fun Fragment.disableBackPressed() {
     requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 }
 
-object DateConverter {
-    @SuppressLint("NewApi")
-    private val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
-    @SuppressLint("NewApi")
-    private val outputFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.US)
+@RequiresApi(Build.VERSION_CODES.O)
+fun String?.formatDate(): String {
+    if (this.isNullOrEmpty()) {
+        return ""
+    }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun formatDate(inputDate: String): String {
-        val date = LocalDate.parse(inputDate, inputFormatter)
-        return outputFormatter.format(date)
+    val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
+    val outputFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.US)
+
+    return try {
+        val date = LocalDate.parse(this, inputFormatter)
+        outputFormatter.format(date)
+    } catch (e: DateTimeParseException) {
+        e.printStackTrace()
+        ""
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun String.formatDate(): String {
-    return DateConverter.formatDate(this)
-}

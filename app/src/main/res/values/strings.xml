@@ -3,4 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="you_didn_t_add_any_movies">You didn\'t add any movies</string>
+    <string name="top_imdb_movies">Top IMDB Movies</string>
+    <string name="most_popular">Most Popular</string>
 </resources>

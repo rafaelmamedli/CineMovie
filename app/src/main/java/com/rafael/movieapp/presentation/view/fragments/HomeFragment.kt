@@ -42,7 +42,6 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapterPopular: PopularMovieAdapter

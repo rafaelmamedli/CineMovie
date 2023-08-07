@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rafael.movieapp.data.models.remote.Result
-import com.rafael.movieapp.data.util.DateConverter
 import com.rafael.movieapp.data.util.formatDate
 import com.rafael.movieapp.databinding.RecentMovieItemBinding
 

@@ -46,7 +46,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSearchBinding.inflate(layoutInflater)
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
         requireActivity().addMenuProvider(object : MenuProvider {
@@ -143,7 +143,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextChange(newText: String?): Boolean {
         lifecycleScope.launch {
             if (newText.isNullOrEmpty()) {
-                // If the search query is empty, display popular movies
                 list.clear()
                 if (popularMoviesLoaded) {
                     list.addAll(popularMovieList)
@@ -152,7 +151,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                     viewModel.getPopularMovies()
                 }
             } else {
-                // If there's a search query, fetch movies by name
                 newText?.let { viewModel.getMovieByName(it) }
             }
         }
