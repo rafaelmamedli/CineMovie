@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
                 R.id.action_homeFragment_to_seeAllFragment,
                 Bundle().apply {
                     putString("type", TOP_RATED_MOVIE)
-                    putParcelable(TOP_RATED, objectTopRated)
+                    putParcelable(TOP_RATED, objectPopular)
 
                 })
 
@@ -127,7 +127,7 @@ class HomeFragment : Fragment() {
                 R.id.action_homeFragment_to_seeAllFragment,
                 Bundle().apply {
                     putString("type", POPULAR_MOVIE)
-                    putParcelable(POPULAR, objectPopular)
+                    putParcelable(POPULAR, objectTopRated)
 
                 })
         }
