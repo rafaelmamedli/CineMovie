@@ -8,7 +8,6 @@
     tools:context=".presentation.view.fragments.DetailFragment"
     >
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,7 +61,7 @@
             android:paddingStart="12dp"
             android:paddingTop="12dp"
             android:paddingEnd="12dp"
-            android:text="Fight Club"
+            android:text="@string/movie_name"
             android:textColor="@color/white"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:paddingStart="12dp"
-            android:text="9.1"
+            android:text="@string/vote_average"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -117,7 +116,7 @@
             android:layout_marginBottom="1dp"
             android:paddingStart="8dp"
             android:textColor="@color/white"
-            android:text="12 September 2023"
+            android:text="@string/date_2"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -130,8 +129,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:progressTint="@color/yellow"
-            android:text="A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground
-orming in every town, until an evvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvccentric gets in the way and ignite"
+            android:text="@string/description"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle=""

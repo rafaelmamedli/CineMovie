@@ -33,30 +33,29 @@
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_gravity="end"
-            android:layout_marginEnd="12dp"
             android:layout_marginTop="12dp"
-            android:backgroundTint="@color/black_30"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/round_backgorund"
-            android:orientation="horizontal"
+            android:backgroundTint="@color/black_30"
             app:layout_constraintEnd_toEndOf="@id/cardView"
             app:layout_constraintTop_toTopOf="@id/cardView">
 
             <ImageView
-                android:layout_margin="6dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
+                android:layout_margin="6dp"
                 android:src="@drawable/baseline_star_24" />
 
             <TextView
-                android:textColor="@color/white"
-                android:maxLength="3"
                 android:id="@+id/txtImdb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="6dp"
-                android:text="8.7"
+                android:maxLength="3"
+                android:text="@string/_8_7"
+                android:textColor="@color/white"
                 android:textSize="22sp" />
 
         </LinearLayout>

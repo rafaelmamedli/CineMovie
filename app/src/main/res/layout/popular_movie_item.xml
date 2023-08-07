@@ -27,6 +27,7 @@
 
         <LinearLayout
             android:background="@drawable/round_backgorund"
+            android:backgroundTint="@color/black_30"
             android:layout_gravity="end"
             android:id="@+id/linearLayout"
             android:orientation="horizontal"
@@ -44,11 +45,12 @@
                 android:layout_height="25dp"/>
 
             <TextView
+                android:textColor="@color/white"
                 android:layout_marginEnd="2dp"
                 android:layout_gravity="center_vertical"
                 android:id="@+id/txtImdb"
                 android:textSize="14sp"
-                android:text="8.7"
+                android:text="@string/vote_average"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -67,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:gravity="center_horizontal"
-        android:text="TextView"
+        android:text="@string/movie_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />

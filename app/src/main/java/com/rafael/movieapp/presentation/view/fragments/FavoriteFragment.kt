@@ -14,7 +14,6 @@ import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.util.FAVOURITE
 import com.rafael.movieapp.data.util.FAVOURITE_MOVIE
-import com.rafael.movieapp.data.util.Status
 import com.rafael.movieapp.data.util.Status.*
 import com.rafael.movieapp.data.util.disableBackPressed
 import com.rafael.movieapp.data.util.gone

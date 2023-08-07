@@ -18,11 +18,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Network Not Connected"
+            android:text="@string/network_not_connected"
             android:gravity="center"/>
 
         <TextView
-            android:text="Please check your network connection and try again."
+            android:text="@string/please_check_your_network_connection_and_try_again"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvMessage"
@@ -33,7 +33,7 @@
 
             android:backgroundTint="@color/black_30"
             android:textColor="@color/orange"
-            android:text="Retry"
+            android:text="@string/retry"
             android:layout_marginTop="10dp"
             android:id="@+id/btnRetry"
             android:layout_width="match_parent"

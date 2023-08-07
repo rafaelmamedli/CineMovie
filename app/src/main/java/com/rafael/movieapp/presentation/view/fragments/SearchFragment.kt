@@ -1,5 +1,8 @@
 package com.rafael.movieapp.presentation.view.fragments
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +12,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
@@ -20,7 +25,6 @@ import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.remote.Result
 import com.rafael.movieapp.data.util.SEARCHED
 import com.rafael.movieapp.data.util.SEARCHED_MOVIE
-import com.rafael.movieapp.data.util.Status
 import com.rafael.movieapp.data.util.Status.*
 import com.rafael.movieapp.data.util.disableBackPressed
 import com.rafael.movieapp.data.util.gone
@@ -75,6 +79,24 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         setHasOptionsMenu(true)
     }
 
+
+    private fun showAlertDialog() {
+        val alertDialog = Dialog(requireContext())
+        with(alertDialog) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            setCancelable(false)
+            setContentView(R.layout.layout_custom_dialog)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
+        val btnRetry: Button = alertDialog.findViewById(R.id.btnRetry)
+
+        btnRetry.setOnClickListener {
+            viewModel.getPopularMovies()
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
+    }
+
     private fun toDetail() {
         adapter.setItemClickListener {
             findNavController().navigate(
@@ -108,6 +130,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                     ERROR -> {
                         binding.progressBar.gone()
                         binding.txtErrorMessage.show()
+                        showAlertDialog()
                         toast(resource.message)
                     }
 

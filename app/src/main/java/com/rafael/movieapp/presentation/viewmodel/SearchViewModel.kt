@@ -29,6 +29,8 @@ class SearchViewModel @Inject constructor(
         getPopularMovies()
     }
 
+
+
     private val _popularMovieList: MutableStateFlow<Resource<Movie>> =
         MutableStateFlow(Resource.loading(null))
     val popularMovieList: StateFlow<Resource<Movie>>

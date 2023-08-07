@@ -20,7 +20,7 @@
         android:visibility="gone"
         android:gravity="center"
         android:textColor="@color/white"
-        android:text="Internet Problem"
+        android:text="@string/internet_problem"
         android:id="@+id/txtErrorMessage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
@@ -149,7 +149,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     android:layout_weight="8"
-                    android:text="Recent Movies "/>
+                    android:text="@string/recent_movies"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"

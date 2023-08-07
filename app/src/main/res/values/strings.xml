@@ -5,4 +5,17 @@
     <string name="you_didn_t_add_any_movies">You didn\'t add any movies</string>
     <string name="top_imdb_movies">Top IMDB Movies</string>
     <string name="most_popular">Most Popular</string>
+    <string name="movie_name">Movie Name</string>
+    <string name="date">2023/21/09</string>
+    <string name="vote_average">10/8</string>
+    <string name="date_2">12 September 2023</string>
+    <string name="description">A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground orming in every town, until an gets in the way and ignite A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground orming in every town, until an gets in the way and ignite</string>
+    <string name="internet_problem">Check Network Connection</string>
+    <string name="recent_movies">Recent Movies</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="network_not_connected">Network Not Connected</string>
+    <string name="please_check_your_network_connection_and_try_again">Please check your network connection and try again.</string>
+    <string name="retry">Retry</string>
+    <string name="vote_average_text">Vote Average</string>
+    <string name="_8_7">8.7</string>
 </resources>
