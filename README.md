@@ -1,4 +1,4 @@
-MovieApp Mvvm + Clean Architecture, Flows, Retrofit, RoomDatabase
+MovieApp Mvvm + Clean Architecture, Kotlin Flows, Retrofit, RoomDatabase, Dagger Hilt
 
 ![image](https://github.com/rafaelmamedli/MovieApp/assets/106253655/a9b3e6a0-2fd7-40b0-81b6-05666a01a120)
 ![image](https://github.com/rafaelmamedli/MovieApp/assets/106253655/8431b636-773c-48ed-8a55-e5f01bbbc4a8)
