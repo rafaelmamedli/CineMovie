@@ -24,12 +24,9 @@ class SearchViewModel @Inject constructor(
     private val useCasePopular: GetRecentMoviesUseCase
     ) :ViewModel() {
 
-
     init {
         getPopularMovies()
     }
-
-
 
     private val _popularMovieList: MutableStateFlow<Resource<Movie>> =
         MutableStateFlow(Resource.loading(null))

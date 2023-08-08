@@ -2,7 +2,6 @@ package com.rafael.movieapp.data.repository.local
 
 
 import com.rafael.movieapp.data.models.local.FavMovies
-import com.rafael.movieapp.data.models.remote.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface FavMoviesRepository {

@@ -6,7 +6,6 @@ import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.util.Resource
 import com.rafael.movieapp.domein.use_case.local.DeleteFavouritesUseCase
 import com.rafael.movieapp.domein.use_case.local.GetAllFavouritesUseCase
-import com.rafael.movieapp.domein.use_case.local.InsertFavouritesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

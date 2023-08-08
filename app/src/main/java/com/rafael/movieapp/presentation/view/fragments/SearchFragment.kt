@@ -45,7 +45,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     lateinit var adapter: SearchAdapter
     private var list = mutableListOf<Result>()
     private var popularMovieList = mutableListOf<Result>()
-    private var popularMoviesLoaded = false // Flag to track if popular movies have been loaded
+    private var popularMoviesLoaded = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

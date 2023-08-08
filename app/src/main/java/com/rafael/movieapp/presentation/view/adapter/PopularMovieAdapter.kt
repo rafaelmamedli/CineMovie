@@ -12,7 +12,6 @@ class PopularMovieAdapter(var list: MutableList<Result>) :
 
     private var itemClickListener: ((Result) -> Unit)? = null
 
-
     inner class ProductViewHolder(private val binding: PopularMovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 

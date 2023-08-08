@@ -41,7 +41,7 @@ class DetailFragment : Fragment() {
     lateinit var binding: FragmentDetailBinding
     private var objMovie: Result? = null
     private val viewModel: DetailViewModel by viewModels()
-    private var isMovieInFavorites = false // Added this line
+    private var isMovieInFavorites = false
 
 
     override fun onCreateView(
