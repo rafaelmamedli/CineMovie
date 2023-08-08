@@ -36,7 +36,9 @@ import com.rafael.movieapp.presentation.view.adapter.RecentMovieAdapter
 import com.rafael.movieapp.presentation.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 
 
 @AndroidEntryPoint
@@ -173,13 +175,16 @@ class HomeFragment : Fragment() {
         alertDialog.show()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "NewApi")
     private fun observeData() {
         lifecycleScope.launch {
             val job1 = async {
                 viewModel.popularMovieList.collect { resource ->
                     when (resource.status) {
                         SUCCESS -> {
+
+                            val currentDateTime = LocalDateTime.now()
+                            Log.d("TIME", "Popular" + currentDateTime.toString())
                             binding.progressBar.gone()
                             binding.nestedView.show()
                             binding.txtErrorMessage.gone()
@@ -212,6 +217,8 @@ class HomeFragment : Fragment() {
                         LOADING -> {}
                         SUCCESS -> {
                             listRecentMovies.clear()
+                            val currentDateTime = LocalDateTime.now()
+                            Log.d("TIME", "Recent" + currentDateTime.toString())
                             resource.data?.results?.let { movieListPopular ->
                                 val sortedDataForDate =
                                     movieListPopular.sortedByDescending { it.release_date }
@@ -232,6 +239,8 @@ class HomeFragment : Fragment() {
                         }
 
                         SUCCESS -> {
+                            val currentDateTime = LocalDateTime.now()
+                            Log.d("TIME", "Top" + currentDateTime.toString())
                             listTopRated.clear()
                             resource.data?.results?.let { movieListTopRated ->
                                 listTopRated.addAll(movieListTopRated)
@@ -244,9 +253,10 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-            job1.await()
-            job2.await()
-            job3.await()
+
+            awaitAll(job1, job2, job3)
+
+
 
 
         }

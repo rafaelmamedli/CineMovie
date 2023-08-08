@@ -75,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:paddingStart="12dp"
+            android:maxLength="3"
             android:text="@string/vote_average"
             android:textColor="@color/white"
             android:textSize="22sp"
