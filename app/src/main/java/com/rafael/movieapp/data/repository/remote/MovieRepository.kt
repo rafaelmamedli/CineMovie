@@ -1,6 +1,9 @@
 package com.rafael.movieapp.data.repository.remote
 
+
 import com.rafael.movieapp.data.models.remote.Movie
+import com.rafael.movieapp.data.models.remote.Trailer
+import com.rafael.movieapp.data.models.remote.detail.Details
 import com.rafael.movieapp.data.util.Resource
 import kotlinx.coroutines.flow.Flow
 
@@ -9,4 +12,6 @@ interface MovieRepository {
    suspend fun getRecentMovies(page: String): Flow<Resource<Movie>>
    suspend fun getTopRatedMovies(page: String): Flow<Resource<Movie>>
    suspend fun getMoviesByName(movieName:String): Flow<Resource<Movie>>
+   suspend fun getMovieTrailer(movieId: Int): Flow<Resource<Trailer>>
+   suspend fun getArtists(movieId: Int): Flow<Resource<Details>>
 }

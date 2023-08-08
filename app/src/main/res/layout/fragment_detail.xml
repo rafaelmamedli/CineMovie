@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.view.fragments.DetailFragment"
+    android:background="@color/background_gray"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_gray">
+        android:layout_height="match_parent">
 
 
         <ImageView
@@ -24,22 +24,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
-            <CheckBox
-                android:layout_marginStart="8dp"
-                android:layout_gravity="center"
-                android:id="@+id/btnFav"
-                android:layout_width="wrap_content"
-                app:useMaterialThemeColors="false"
-                android:layout_height="wrap_content"
-                app:buttonTint="@color/orange"
-                android:button="@drawable/selector_fav_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-
+        <CheckBox
+            android:id="@+id/btnFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:button="@drawable/selector_fav_item"
+            app:buttonTint="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:useMaterialThemeColors="false" />
 
 
         <ImageView
@@ -47,12 +42,13 @@
             android:layout_width="342px"
             android:layout_height="513px"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="144dp"
+            android:layout_marginBottom="5dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/abc"
+            app:layout_constraintBottom_toBottomOf="@+id/btnTrailer"
             app:layout_constraintStart_toStartOf="@+id/backDrop"
-            app:layout_constraintTop_toTopOf="@id/backDrop" />
+            />
 
         <TextView
             android:id="@+id/txtTitle"
@@ -74,8 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:paddingStart="12dp"
             android:maxLength="3"
+            android:paddingStart="12dp"
             android:text="@string/vote_average"
             android:textColor="@color/white"
             android:textSize="22sp"
@@ -108,40 +104,55 @@
             app:layout_constraintTop_toBottomOf="@+id/txtImdb" />
 
 
-
         <TextView
-            android:fontFamily="@font/comfortaalight"
             android:id="@+id/txtDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
+            android:fontFamily="@font/comfortaalight"
             android:paddingStart="8dp"
-            android:textColor="@color/white"
             android:text="@string/date_2"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         <TextView
-            android:fontFamily="@font/comfortaasemibold"
             android:id="@+id/txtDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/comfortaasemibold"
             android:padding="12dp"
             android:progressTint="@color/yellow"
             android:text="@string/description"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle=""
-            app:layout_constraintTop_toBottomOf="@+id/posterImage" />
+            app:layout_constraintTop_toBottomOf="@+id/btnTrailer" />
+
+        <Button
+            android:backgroundTint="@color/orange"
+            android:id="@+id/btnTrailer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Play Trailer"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/txtDate"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
 
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txtDescription"
+             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

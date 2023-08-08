@@ -76,17 +76,15 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:listitem="@layout/topimdb_movie_item"
-                android:gravity="center"
-                android:foregroundGravity="center"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
                 android:id="@+id/recyclerView_Top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                />
-
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/topimdb_movie_item" />
 
             <LinearLayout
                 android:paddingStart="8dp"

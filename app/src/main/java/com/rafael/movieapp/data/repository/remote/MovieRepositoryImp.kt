@@ -1,6 +1,9 @@
 package com.rafael.movieapp.data.repository.remote
 
+
 import com.rafael.movieapp.data.models.remote.Movie
+import com.rafael.movieapp.data.models.remote.Trailer
+import com.rafael.movieapp.data.models.remote.detail.Details
 import com.rafael.movieapp.data.retrofit.ApiService
 import com.rafael.movieapp.data.util.Resource
 import kotlinx.coroutines.flow.Flow
@@ -48,6 +51,26 @@ class MovieRepositoryImp @Inject constructor(private val apiService: ApiService)
             emit(Resource.success(response.body()))
         } else {
             emit(Resource.error("Error search movie",null))
+        }
+    }
+
+    override suspend fun getMovieTrailer(movieId: Int): Flow<Resource<Trailer>> = flow{
+        emit(Resource.loading(null))
+        val response = apiService.getTrailer(movieId)
+        if (response.isSuccessful) {
+            emit(Resource.success(response.body()))
+        } else {
+            emit(Resource.error("Error get detail movie",null))
+        }
+    }
+
+    override suspend fun getArtists(movieId: Int): Flow<Resource<Details>> = flow {
+        emit(Resource.loading(null))
+        val response = apiService.getArtists(movieId)
+        if (response.isSuccessful) {
+            emit(Resource.success(response.body()))
+        } else {
+            emit(Resource.error("Error get detail movie",null))
         }
     }
 

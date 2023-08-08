@@ -9,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.models.remote.detail.Cast
 import com.rafael.movieapp.data.util.ALL
 import com.rafael.movieapp.data.util.ALL_MOVIE
 import com.rafael.movieapp.data.util.FAVOURITE
@@ -29,7 +31,12 @@ import com.rafael.movieapp.data.util.glide
 import com.rafael.movieapp.data.util.hide
 import com.rafael.movieapp.data.util.showSnackBar
 import com.rafael.movieapp.data.util.toRoomResult
+import com.rafael.movieapp.data.util.toast
 import com.rafael.movieapp.databinding.FragmentDetailBinding
+import com.rafael.movieapp.presentation.view.adapter.CastAdapter
+import com.rafael.movieapp.presentation.view.adapter.PopularMovieAdapter
+import com.rafael.movieapp.presentation.view.adapter.RecentMovieAdapter
+import com.rafael.movieapp.presentation.view.adapter.TopImdbAdapter
 import com.rafael.movieapp.presentation.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -42,6 +49,9 @@ class DetailFragment : Fragment() {
     private var objMovie: Result? = null
     private val viewModel: DetailViewModel by viewModels()
     private var isMovieInFavorites = false
+    lateinit var adapter: CastAdapter
+    private var movieId: Int? = null
+    private val listCast = mutableListOf<Cast>()
 
 
     override fun onCreateView(
@@ -55,12 +65,43 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
+
+        getAdapters()
         getObjects()
+        objMovie?.id?.let { getCrew(it) }
         checkMovie()
         checkBox()
 
     }
+
+    private fun getAdapters() {
+        adapter = CastAdapter(listCast)
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun getCrew(movieId: Int) {
+        viewModel.crewMovie(movieId)
+        lifecycleScope.launch {
+            viewModel.getCrew.collect { resource ->
+                when (resource.status) {
+                    SUCCESS -> {
+                        adapter = CastAdapter(listCast)
+                        binding.recyclerView.adapter = adapter
+
+                        val cast = resource.data?.cast
+                        cast?.let { listCast.addAll(it) }
+                    }
+
+                    ERROR -> {}
+                    LOADING -> {}
+                }
+            }
+        }
+
+    }
+
 
     private fun checkMovie() = lifecycleScope.launch {
         viewModel.getFavMovies.collect { resource ->
@@ -88,13 +129,13 @@ class DetailFragment : Fragment() {
                 }
             } else {
                 if (isMovieInFavorites) {
-                        viewModel.getFavMovies.value.data?.find { it.title == objMovie?.title }
-                            ?.let {
-                                viewModel.deleteFavMovie(it)
-                                showSnackBar("Removed from favorites")
-                                isMovieInFavorites = false
+                    viewModel.getFavMovies.value.data?.find { it.title == objMovie?.title }
+                        ?.let {
+                            viewModel.deleteFavMovie(it)
+                            showSnackBar("Removed from favorites")
+                            isMovieInFavorites = false
 
-                            }
+                        }
                 }
             }
         }
