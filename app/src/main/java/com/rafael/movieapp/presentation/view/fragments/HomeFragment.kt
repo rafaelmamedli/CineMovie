@@ -183,8 +183,7 @@ class HomeFragment : Fragment() {
                     when (resource.status) {
                         SUCCESS -> {
 
-                            val currentDateTime = LocalDateTime.now()
-                            Log.d("TIME", "Popular" + currentDateTime.toString())
+
                             binding.progressBar.gone()
                             binding.nestedView.show()
                             binding.txtErrorMessage.gone()
@@ -217,8 +216,7 @@ class HomeFragment : Fragment() {
                         LOADING -> {}
                         SUCCESS -> {
                             listRecentMovies.clear()
-                            val currentDateTime = LocalDateTime.now()
-                            Log.d("TIME", "Recent" + currentDateTime.toString())
+
                             resource.data?.results?.let { movieListPopular ->
                                 val sortedDataForDate =
                                     movieListPopular.sortedByDescending { it.release_date }
@@ -239,8 +237,7 @@ class HomeFragment : Fragment() {
                         }
 
                         SUCCESS -> {
-                            val currentDateTime = LocalDateTime.now()
-                            Log.d("TIME", "Top" + currentDateTime.toString())
+
                             listTopRated.clear()
                             resource.data?.results?.let { movieListTopRated ->
                                 listTopRated.addAll(movieListTopRated)
@@ -253,11 +250,7 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-
             awaitAll(job1, job2, job3)
-
-
-
 
         }
 
