@@ -11,40 +11,40 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("3/movie/popular?")
+    @GET("movie/popular?")
     suspend fun getPopularMovies(
         @Query("page") query: String,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<Movie>
 
-    @GET("3/movie/now_playing?")
+    @GET("movie/now_playing?")
     suspend fun getRecentMovies(
         @Query("page") query: String,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<Movie>
 
 
-    @GET("3/movie/top_rated?")
+    @GET("movie/top_rated?")
     suspend fun getTopRatedMovies(
         @Query("page") page: String,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<Movie>
 
-    @GET("3/search/movie?")
+    @GET("search/movie?")
     suspend fun getSearch(
         @Query("query") query: String ,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<Movie>
 
 
-    @GET("/3/movie/{movieId}/credits?")
+    @GET("movie/{movieId}/credits?")
     suspend fun getArtists(
         @Path("movieId") query: Int,
         @Query("api_key") apiKey: String = API_KEY
     ) : Response<Details>
 
 
-    @GET("3/movie/{movieId}/videos")
+    @GET("movie/{movieId}/videos")
     suspend fun getTrailer(
         @Path("movieId") movieId: Int,
         @Query("api_key") apiKey: String = API_KEY

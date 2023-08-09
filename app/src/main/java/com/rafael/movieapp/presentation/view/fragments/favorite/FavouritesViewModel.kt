@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.viewmodel
+package com.rafael.movieapp.presentation.view.fragments.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,7 +9,7 @@ import com.rafael.movieapp.domein.use_case.local.GetAllFavouritesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,25 +19,20 @@ import javax.inject.Inject
 class FavouritesViewModel @Inject constructor(
     private val useCaseGetFavMovies: GetAllFavouritesUseCase,
     private val useCaseDeleteMovie: DeleteFavouritesUseCase
-) :ViewModel(
+) : ViewModel(
 
 ) {
 
-
-
-
-
     private val _getFavMovies: MutableStateFlow<Resource<MutableList<FavMovies>>> =
         MutableStateFlow(Resource.loading(null))
-    val getFavMovies: StateFlow<Resource<MutableList<FavMovies>>>
-        get() = _getFavMovies
+    val getFavMovies = _getFavMovies.asStateFlow()
 
 
     init {
         getAllFavMovies()
     }
 
-    fun deleteFavMovie(favMovie:FavMovies) = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteFavMovie(favMovie: FavMovies) = viewModelScope.launch(Dispatchers.IO) {
         useCaseDeleteMovie.delete(favMovie)
     }
 
@@ -52,10 +47,6 @@ class FavouritesViewModel @Inject constructor(
                 }
         }
     }
-
-
-
-
 
 
 

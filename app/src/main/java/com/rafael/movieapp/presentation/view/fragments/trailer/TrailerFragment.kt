@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.view.fragments
+package com.rafael.movieapp.presentation.view.fragments.trailer
 
 import android.os.Bundle
 import android.util.Log
@@ -49,11 +49,12 @@ class TrailerFragment : BottomSheetDialogFragment() {
                 when (resource.status) {
                     SUCCESS -> {
                         val movieKey = resource.data?.results?.last()?.key
-                        movieKey?.let {
-
-                        }
-                        val video =
-                            "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/$movieKey\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+                        val video = "<iframe width=\"100%\" height=\"100%\" " +
+                                "src=\"https://www.youtube.com/embed/$movieKey\"" +
+                                " title=\"YouTube video player\" frameborder=\"0\" " +
+                                "allow=\"accelerometer; autoplay; clipboard-write; " +
+                                "encrypted-media; gyroscope; picture-in-picture; web-share\" " +
+                                "allowfullscreen></iframe>"
                         binding.apply {
                             youtubeWebView.loadData(video, "text/html", "utf-8")
                             youtubeWebView.settings.javaScriptEnabled = true
@@ -62,11 +63,11 @@ class TrailerFragment : BottomSheetDialogFragment() {
                     }
 
                     ERROR -> {
-                        Log.e("ERROR", resource.message.toString())
+                        Log.e("TAG", resource.message.toString())
                     }
 
                     LOADING -> {
-                        Log.e("LOADING", resource.message.toString())
+                        Log.e("LOADING", "Loading")
 
                     }
                 }

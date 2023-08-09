@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.view.fragments
+package com.rafael.movieapp.presentation.view.fragments.seeall
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.remote.movie.Movie
 import com.rafael.movieapp.data.models.remote.movie.Result
+import com.rafael.movieapp.data.util.POPULAR_MOVIE
+import com.rafael.movieapp.data.util.RECENT_MOVIE
+import com.rafael.movieapp.data.util.TOP_RATED_MOVIE
 import com.rafael.movieapp.databinding.FragmentSeeAllBinding
 import com.rafael.movieapp.presentation.view.adapter.RecentMovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,20 +70,20 @@ class SeeAllFragment : Fragment() {
             val type = arguments?.getString("type", null)
             type?.let {
                 when (it) {
-                    "top_rated_movie" -> {
+                    TOP_RATED_MOVIE -> {
                         list.clear()
                         objectMovie = arguments?.getParcelable("top_rated")
                         val obj = objectMovie?.results
                         obj?.let { it1 -> list.addAll(it1) }
                     }
-                    "popular_movie" -> {
+                    POPULAR_MOVIE -> {
                         list.clear()
                         objectMovie = arguments?.getParcelable("popular")
                         val obj = objectMovie?.results
                         obj?.let { it1 -> list.addAll(it1) }
                     }
 
-                    "recent_movie" -> {
+                    RECENT_MOVIE -> {
                         list.clear()
                         objectMovie = arguments?.getParcelable("recent")
                         val obj = objectMovie?.results

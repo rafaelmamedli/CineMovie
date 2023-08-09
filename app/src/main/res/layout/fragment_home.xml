@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".presentation.view.fragments.HomeFragment">
+    tools:context=".presentation.view.fragments.home.HomeFragment">
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -82,9 +82,7 @@
                 android:layout_marginBottom="12dp"
                 android:foregroundGravity="center"
                 android:gravity="center"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/topimdb_movie_item" />
+                />
 
             <LinearLayout
                 android:paddingStart="8dp"
@@ -122,12 +120,9 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
                 android:layout_marginTop="8dp"
                 android:id="@+id/recyclerView_Popular"
                 android:padding="4dp"
-                tools:listitem="@layout/popular_movie_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -169,8 +164,6 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:listitem="@layout/recent_movie_item"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:nestedScrollingEnabled="false"
                 android:id="@+id/recyclerView_Recent"
                 android:padding="6dp"

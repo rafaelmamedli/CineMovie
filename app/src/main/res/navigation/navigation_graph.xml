@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.rafael.movieapp.presentation.view.fragments.HomeFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.rafael.movieapp.presentation.view.fragments.FavoriteFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.favorite.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.rafael.movieapp.presentation.view.fragments.DetailFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/seeAllFragment"
-        android:name="com.rafael.movieapp.presentation.view.fragments.SeeAllFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.seeall.SeeAllFragment"
         android:label="fragment_see_all"
         tools:layout="@layout/fragment_see_all" >
         <action
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.rafael.movieapp.presentation.view.fragments.SearchFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -81,7 +81,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.rafael.movieapp.presentation.view.fragments.SplashFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -90,7 +90,7 @@
     </fragment>
     <dialog
         android:id="@+id/trailerFragment"
-        android:name="com.rafael.movieapp.presentation.view.fragments.TrailerFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.trailer.TrailerFragment"
         android:label="fragment_trailer"
         tools:layout="@layout/fragment_trailer" >
 

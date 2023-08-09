@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rafael.movieapp.data.models.remote.movie.Result
-import com.rafael.movieapp.databinding.PopularMovieItemBinding
+import com.rafael.movieapp.databinding.LayoutPopularMovieBinding
 
 class PopularMovieAdapter(var list: MutableList<Result>) :
     RecyclerView.Adapter<PopularMovieAdapter.ProductViewHolder>() {
 
     private var itemClickListener: ((Result) -> Unit)? = null
 
-    inner class ProductViewHolder(private val binding: PopularMovieItemBinding) :
+    inner class ProductViewHolder(private val binding: LayoutPopularMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Result) {
@@ -32,7 +32,7 @@ class PopularMovieAdapter(var list: MutableList<Result>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val itemView = PopularMovieItemBinding.inflate(
+        val itemView = LayoutPopularMovieBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

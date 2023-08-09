@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.view.fragments
+package com.rafael.movieapp.presentation.view.fragments.favorite
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -20,7 +20,6 @@ import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
 import com.rafael.movieapp.databinding.FragmentFavoriteBinding
 import com.rafael.movieapp.presentation.view.adapter.FavouriteAdapter
-import com.rafael.movieapp.presentation.viewmodel.FavouritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

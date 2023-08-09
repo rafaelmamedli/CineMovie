@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.view.fragments
+package com.rafael.movieapp.presentation.view.fragments.splash
 
 import android.os.Bundle
 import android.os.Handler

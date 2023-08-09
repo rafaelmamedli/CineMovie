@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.view.fragments
+package com.rafael.movieapp.presentation.view.fragments.search
 
 import android.app.Dialog
 import android.graphics.Color
@@ -7,18 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.rafael.movieapp.R
@@ -32,13 +26,12 @@ import com.rafael.movieapp.data.util.show
 import com.rafael.movieapp.data.util.toast
 import com.rafael.movieapp.databinding.FragmentSearchBinding
 import com.rafael.movieapp.presentation.view.adapter.SearchAdapter
-import com.rafael.movieapp.presentation.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
+class SearchFragment : Fragment(){
 
     private val viewModel: SearchViewModel by viewModels()
     lateinit var binding: FragmentSearchBinding
@@ -52,19 +45,10 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchBinding.inflate(layoutInflater)
-        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
-        requireActivity().addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.menu_search, menu)
-                val item = menu.findItem(R.id.search_word)
-                val searchView = item.actionView as SearchView
-                searchView.setOnQueryTextListener(this@SearchFragment)
-            }
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return false
-            }
-        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+
+
 
         return binding.root
     }
@@ -77,6 +61,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         toDetail()
         disableBackPressed()
         setHasOptionsMenu(true)
+        searchMovie()
     }
 
 
@@ -155,29 +140,40 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         }
     }
 
+    private fun searchMovie(){
 
-
-
-
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        return false
-    }
-
-    override fun onQueryTextChange(newText: String?): Boolean {
-        lifecycleScope.launch {
-            if (newText.isNullOrEmpty()) {
-                list.clear()
-                if (popularMoviesLoaded) {
-                    list.addAll(popularMovieList)
-                    adapter.notifyDataSetChanged()
-                } else {
-                    viewModel.getPopularMovies()
-                }
-            } else {
-                newText?.let { viewModel.getMovieByName(it) }
+        binding.searchView.clearFocus()
+        binding.searchView.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
             }
-        }
 
-        return true
+            override fun onQueryTextChange(newText: String?): Boolean {
+                lifecycleScope.launch {
+                    if (newText.isNullOrEmpty()) {
+                        list.clear()
+                        if (popularMoviesLoaded) {
+                            list.addAll(popularMovieList)
+                            adapter.notifyDataSetChanged()
+                        } else {
+                            viewModel.getPopularMovies()
+                        }
+                    } else {
+                        newText?.let { viewModel.getMovieByName(it) }
+                    }
+                }
+
+                return true
+            }
+        })
+
+
+
     }
+
+
+
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.view.fragments
+package com.rafael.movieapp.presentation.view.fragments.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -34,10 +34,8 @@ import com.rafael.movieapp.data.util.glide
 import com.rafael.movieapp.data.util.hide
 import com.rafael.movieapp.data.util.showSnackBar
 import com.rafael.movieapp.data.util.toRoomResult
-import com.rafael.movieapp.data.util.toast
 import com.rafael.movieapp.databinding.FragmentDetailBinding
 import com.rafael.movieapp.presentation.view.adapter.CastAdapter
-import com.rafael.movieapp.presentation.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -86,8 +84,7 @@ class DetailFragment : Fragment() {
         binding.btnTrailer.setOnClickListener {
             findNavController().navigate(
                 R.id.action_detailFragment_to_trailerFragment,
-                Bundle().apply {
-                    movieId?.let { putInt(MOVIE_ID, it) }
+                Bundle().apply { movieId?.let { putInt(MOVIE_ID, it) }
                 })
         }
 
@@ -100,7 +97,6 @@ class DetailFragment : Fragment() {
             viewModel.getCrew.collect { resource ->
                 when (resource.status) {
                     SUCCESS -> {
-                        toast("success")
                         adapter = CastAdapter(listCast)
                         binding.recyclerView.adapter = adapter
                         val cast = resource.data?.cast
@@ -108,8 +104,9 @@ class DetailFragment : Fragment() {
                     }
 
                     ERROR -> {
-                        Log.e("ERRORNO",resource.message.toString())
+                        Log.e("ERROR", resource.message.toString())
                     }
+
                     LOADING -> {
 
                     }

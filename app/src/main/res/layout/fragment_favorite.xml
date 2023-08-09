@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.view.fragments.FavoriteFragment">
+    tools:context=".presentation.view.fragments.favorite.FavoriteFragment">
 
 
     <ProgressBar
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/fav_movie_item" />
+        tools:listitem="@layout/layout_fav_movie" />
 
 
 </LinearLayout>

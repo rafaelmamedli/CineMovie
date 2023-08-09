@@ -5,10 +5,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="@android:color/transparent"
-    app:cardElevation="0dp"
-    app:cardUseCompatPadding="true"
     android:background="@drawable/top_round"
-    tools:context=".presentation.view.fragments.TrailerFragment">
+    tools:context=".presentation.view.fragments.trailer.TrailerFragment">
 
     <WebView
         android:id="@+id/youtubeWebView"

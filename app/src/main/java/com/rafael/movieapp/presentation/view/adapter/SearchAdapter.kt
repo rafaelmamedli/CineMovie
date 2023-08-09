@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rafael.movieapp.data.models.remote.movie.Result
-import com.rafael.movieapp.databinding.SearchMovieItemBinding
+import com.rafael.movieapp.databinding.LayoutSearchMovieBinding
 
 class SearchAdapter(private val list: MutableList<Result>): RecyclerView.Adapter<SearchAdapter.ProductViewHolder>() {
 
@@ -15,7 +15,7 @@ class SearchAdapter(private val list: MutableList<Result>): RecyclerView.Adapter
     private var itemClickListener: ((Result) -> Unit)? = null
 
 
-    inner class ProductViewHolder(private val binding: SearchMovieItemBinding) :
+    inner class ProductViewHolder(private val binding: LayoutSearchMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("NewApi")
@@ -34,7 +34,7 @@ class SearchAdapter(private val list: MutableList<Result>): RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val itemView = SearchMovieItemBinding.inflate(
+        val itemView = LayoutSearchMovieBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

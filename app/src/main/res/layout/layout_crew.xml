@@ -24,6 +24,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/abc"
+                    android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     />
 

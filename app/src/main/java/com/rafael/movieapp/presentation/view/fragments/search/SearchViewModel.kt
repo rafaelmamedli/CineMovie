@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.viewmodel
+package com.rafael.movieapp.presentation.view.fragments.search
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import com.rafael.movieapp.domein.use_case.remote.GetRecentMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -20,9 +20,9 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
 
-    private val useCaseMovieByName : GetMovieByNameUseCase,
+    private val useCaseMovieByName: GetMovieByNameUseCase,
     private val useCasePopular: GetRecentMoviesUseCase
-    ) :ViewModel() {
+) : ViewModel() {
 
     init {
         getPopularMovies()
@@ -30,14 +30,12 @@ class SearchViewModel @Inject constructor(
 
     private val _popularMovieList: MutableStateFlow<Resource<Movie>> =
         MutableStateFlow(Resource.loading(null))
-    val popularMovieList: StateFlow<Resource<Movie>>
-        get() = _popularMovieList
+    val popularMovieList = _popularMovieList.asStateFlow()
 
 
     private val _movieByName: MutableStateFlow<Resource<Movie>> =
         MutableStateFlow(Resource.loading(null))
-    val movieByName: StateFlow<Resource<Movie>>
-        get() = _movieByName
+    val movieByName = _movieByName.asStateFlow()
 
 
     fun getPopularMovies() {
@@ -48,7 +46,6 @@ class SearchViewModel @Inject constructor(
                 }
                 result.collectLatest {
                     _popularMovieList.value = it
-
                 }
             } catch (e: Exception) {
                 _popularMovieList.value =
@@ -59,22 +56,14 @@ class SearchViewModel @Inject constructor(
     }
 
 
-
-
-
-
-
-
-
-
-    fun getMovieByName(movieName:String) {
-        viewModelScope.launch (Dispatchers.Main) {
+    fun getMovieByName(movieName: String) {
+        viewModelScope.launch(Dispatchers.Main) {
             try {
                 val result = withContext(Dispatchers.IO) {
                     useCaseMovieByName.getMovie(movieName)
                 }
                 result.collectLatest {
-                    Log.d("SEARCH",it.toString())
+                    Log.d("SEARCH", it.toString())
                     _movieByName.value = it
                 }
             } catch (e: Exception) {

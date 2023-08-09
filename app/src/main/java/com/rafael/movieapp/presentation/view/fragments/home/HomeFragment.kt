@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.view.fragments
+package com.rafael.movieapp.presentation.view.fragments.home
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.remote.movie.Movie
@@ -33,7 +34,6 @@ import com.rafael.movieapp.databinding.FragmentHomeBinding
 import com.rafael.movieapp.presentation.view.adapter.TopImdbAdapter
 import com.rafael.movieapp.presentation.view.adapter.PopularMovieAdapter
 import com.rafael.movieapp.presentation.view.adapter.RecentMovieAdapter
-import com.rafael.movieapp.presentation.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -75,6 +75,93 @@ class HomeFragment : Fragment() {
         goToSeeAll()
         toDetail()
         disableBackPressed()
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged", "NewApi")
+    private fun observeData() {
+
+        lifecycleScope.launch {
+
+
+            val job1 = async {
+                viewModel.popularMovieList.collect { resource ->
+                    when (resource.status) {
+                        SUCCESS -> {
+                            binding.progressBar.gone()
+                            binding.nestedView.show()
+                            binding.txtErrorMessage.gone()
+                            listPopularMovies.clear()
+                            resource.data?.results?.let { movieList ->
+                                listPopularMovies.addAll(movieList)
+                                objectPopular = resource.data
+                            }
+                            adapterPopular.notifyDataSetChanged()
+
+                        }
+
+                        ERROR -> {
+                            binding.progressBar.gone()
+                            binding.txtErrorMessage.show()
+                            showAlertDialog()
+                            Log.e("ERROR", resource.message.toString())
+                        }
+
+                        LOADING -> binding.progressBar.show()
+
+                    }
+                }
+            }
+
+
+            val job2 = async {
+                viewModel.recentMovieList.collect { resource ->
+                    when (resource.status) {
+                        LOADING -> {}
+                        SUCCESS -> {
+                            listRecentMovies.clear()
+
+                            resource.data?.results?.let { movieListPopular ->
+                                val sortedDataForDate =
+                                    movieListPopular.sortedByDescending { it.release_date }
+                                listRecentMovies.addAll(sortedDataForDate)
+                                objectRecent = resource.data
+                            }
+                            adapterRecent.notifyDataSetChanged()
+                        }
+
+                        ERROR -> Log.e("ERROR", resource.message.toString())
+                    }
+                }
+            }
+
+            val job3 = async {
+                viewModel.topRatedMovieList.collect { resource ->
+                    when (resource.status) {
+                        LOADING -> {
+                        }
+
+                        SUCCESS -> {
+
+                            listTopRated.clear()
+                            resource.data?.results?.let { movieListTopRated ->
+                                listTopRated.addAll(movieListTopRated)
+                                objectTopRated = resource.data
+                            }
+                            adapterTopImdb.notifyDataSetChanged()
+                        }
+
+                        ERROR -> Log.e("ERROR", resource.message.toString())
+                    }
+                }
+
+            }
+
+            awaitAll(job1, job2, job3)
+
+        }
+
+
     }
 
 
@@ -145,14 +232,23 @@ class HomeFragment : Fragment() {
     }
 
     private fun getAdapters() {
+        binding.apply {
+            recyclerViewPopular.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            recyclerViewRecent.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            recyclerViewTop.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+
         adapterPopular = PopularMovieAdapter(listTopRated)
         adapterRecent = RecentMovieAdapter(listRecentMovies, true)
         adapterTopImdb = TopImdbAdapter(listPopularMovies)
 
         binding.apply {
-            recyclerViewPopular.adapter = adapterPopular
-            recyclerViewRecent.adapter = adapterRecent
             recyclerViewTop.adapter = adapterTopImdb
+            recyclerViewRecent.adapter = adapterRecent
+            recyclerViewPopular.adapter = adapterPopular
         }
     }
 
@@ -172,87 +268,6 @@ class HomeFragment : Fragment() {
             alertDialog.dismiss()
         }
         alertDialog.show()
-    }
-
-    @SuppressLint("NotifyDataSetChanged", "NewApi")
-    private fun observeData() {
-        lifecycleScope.launch {
-            val job1 = async {
-                viewModel.popularMovieList.collect { resource ->
-                    when (resource.status) {
-                        SUCCESS -> {
-
-
-                            binding.progressBar.gone()
-                            binding.nestedView.show()
-                            binding.txtErrorMessage.gone()
-                            listPopularMovies.clear()
-                            resource.data?.results?.let { movieList ->
-                                listPopularMovies.addAll(movieList)
-                                objectPopular = resource.data
-                            }
-                            adapterPopular.notifyDataSetChanged()
-
-                        }
-
-                        ERROR -> {
-                            binding.progressBar.gone()
-                            binding.txtErrorMessage.show()
-                            showAlertDialog()
-                            Log.e("ERROR", resource.message.toString())
-                        }
-
-                        LOADING -> binding.progressBar.show()
-
-                    }
-                }
-            }
-
-
-            val job2 = async {
-                viewModel.recentMovieList.collect { resource ->
-                    when (resource.status) {
-                        LOADING -> {}
-                        SUCCESS -> {
-                            listRecentMovies.clear()
-
-                            resource.data?.results?.let { movieListPopular ->
-                                val sortedDataForDate =
-                                    movieListPopular.sortedByDescending { it.release_date }
-                                listRecentMovies.addAll(sortedDataForDate)
-                                objectRecent = resource.data
-                            }
-                            adapterRecent.notifyDataSetChanged()
-                        }
-                        ERROR -> Log.e("ERROR", resource.message.toString())
-                    }
-                }
-            }
-
-            val job3 = async {
-                viewModel.topRatedMovieList.collect { resource ->
-                    when (resource.status) {
-                        LOADING -> {
-                        }
-
-                        SUCCESS -> {
-
-                            listTopRated.clear()
-                            resource.data?.results?.let { movieListTopRated ->
-                                listTopRated.addAll(movieListTopRated)
-                                objectTopRated = resource.data
-                            }
-                            adapterTopImdb.notifyDataSetChanged()
-                        }
-
-                        ERROR -> Log.e("ERROR", resource.message.toString())
-                    }
-                }
-            }
-            awaitAll(job1, job2, job3)
-
-        }
-
     }
 
 

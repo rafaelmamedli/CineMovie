@@ -48,6 +48,7 @@ fun ImageView.glide(path: String?) {
 
 fun Result.toRoomResult(): FavMovies {
     return FavMovies(
+        id=id,
         backdrop_path = backdrop_path,
         genre_ids = genre_ids,
         overview = overview,

@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.viewmodel
+package com.rafael.movieapp.presentation.view.fragments.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,11 +9,9 @@ import com.rafael.movieapp.domein.use_case.local.DeleteFavouritesUseCase
 import com.rafael.movieapp.domein.use_case.local.GetAllFavouritesUseCase
 import com.rafael.movieapp.domein.use_case.local.InsertFavouritesUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetMovieArtistsUseCase
-import com.rafael.movieapp.domein.use_case.remote.GetMovieTrailerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
@@ -29,25 +27,20 @@ class DetailViewModel
     private val useCaseAddFavMovie: InsertFavouritesUseCase,
     private val useCaseGetFavMovies: GetAllFavouritesUseCase,
     private val useCaseDeleteMovie: DeleteFavouritesUseCase,
-    private val useCaseTrailerMovie: GetMovieTrailerUseCase,
     private val useCaseArtists: GetMovieArtistsUseCase
 ) : ViewModel() {
+
     init {
         getAllFavMovies()
     }
 
     private val _getFavMovies: MutableStateFlow<Resource<MutableList<FavMovies>>> =
         MutableStateFlow(Resource.loading(null))
-    val getFavMovies: StateFlow<Resource<MutableList<FavMovies>>>
-        get() = _getFavMovies
+    val getFavMovies = _getFavMovies.asStateFlow()
 
     private val _getCrew: MutableStateFlow<Resource<Details>> =
         MutableStateFlow(Resource.loading(null))
     val getCrew = _getCrew.asStateFlow()
-
-
-
-
 
 
     fun addFavMovie(favMovie: FavMovies) = viewModelScope.launch(Dispatchers.IO) {
