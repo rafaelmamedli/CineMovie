@@ -1,4 +1,4 @@
-package com.rafael.movieapp.presentation.viewmodel
+package com.rafael.movieapp.presentation.view.fragments.trailer
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

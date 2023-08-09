@@ -12,7 +12,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rafael.movieapp.data.util.MOVIE_ID
 import com.rafael.movieapp.data.util.Status.*
 import com.rafael.movieapp.databinding.FragmentTrailerBinding
-import com.rafael.movieapp.presentation.viewmodel.TrailerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
