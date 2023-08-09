@@ -1,8 +1,8 @@
 package com.rafael.movieapp.data.retrofit
 
 
-import com.rafael.movieapp.data.models.remote.Movie
-import com.rafael.movieapp.data.models.remote.Trailer
+import com.rafael.movieapp.data.models.remote.movie.Movie
+import com.rafael.movieapp.data.models.remote.movie.Trailer
 import com.rafael.movieapp.data.models.remote.detail.Details
 import com.rafael.movieapp.data.util.API_KEY
 import retrofit2.Response

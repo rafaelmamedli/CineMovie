@@ -22,7 +22,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.rafael.movieapp.R
-import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.models.remote.movie.Result
 import com.rafael.movieapp.data.util.SEARCHED
 import com.rafael.movieapp.data.util.SEARCHED_MOVIE
 import com.rafael.movieapp.data.util.Status.*

@@ -9,8 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rafael.movieapp.R
-import com.rafael.movieapp.data.models.remote.Movie
-import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.models.remote.movie.Movie
+import com.rafael.movieapp.data.models.remote.movie.Result
 import com.rafael.movieapp.databinding.FragmentSeeAllBinding
 import com.rafael.movieapp.presentation.view.adapter.RecentMovieAdapter
 import dagger.hilt.android.AndroidEntryPoint

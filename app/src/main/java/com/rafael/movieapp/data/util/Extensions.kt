@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.rafael.movieapp.data.models.local.FavMovies
-import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.models.remote.movie.Result
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException

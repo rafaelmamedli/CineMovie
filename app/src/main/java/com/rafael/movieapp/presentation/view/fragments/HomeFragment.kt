@@ -17,8 +17,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.rafael.movieapp.R
-import com.rafael.movieapp.data.models.remote.Movie
-import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.models.remote.movie.Movie
+import com.rafael.movieapp.data.models.remote.movie.Result
 import com.rafael.movieapp.data.util.POPULAR
 import com.rafael.movieapp.data.util.POPULAR_MOVIE
 import com.rafael.movieapp.data.util.RECENT
@@ -38,7 +38,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 
 @AndroidEntryPoint

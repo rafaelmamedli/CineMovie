@@ -15,6 +15,7 @@ const val SEARCHED_MOVIE="searched_movie"
 const val SEARCHED="searched"
 const val ALL_MOVIE = "all_movie"
 const val ALL = "all"
+const val MOVIE_ID = "movie_id"
 
 
 

@@ -46,7 +46,12 @@
         android:id="@+id/detailFragment"
         android:name="com.rafael.movieapp.presentation.view.fragments.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_trailerFragment"
+            app:destination="@id/trailerFragment"
+           />
+    </fragment>
     <fragment
         android:id="@+id/seeAllFragment"
         android:name="com.rafael.movieapp.presentation.view.fragments.SeeAllFragment"
@@ -83,4 +88,11 @@
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/trailerFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.TrailerFragment"
+        android:label="fragment_trailer"
+        tools:layout="@layout/fragment_trailer" >
+
+    </dialog>
 </navigation>

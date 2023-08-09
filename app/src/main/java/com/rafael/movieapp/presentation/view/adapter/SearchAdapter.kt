@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.rafael.movieapp.data.models.remote.Result
+import com.rafael.movieapp.data.models.remote.movie.Result
 import com.rafael.movieapp.databinding.SearchMovieItemBinding
 
 class SearchAdapter(private val list: MutableList<Result>): RecyclerView.Adapter<SearchAdapter.ProductViewHolder>() {

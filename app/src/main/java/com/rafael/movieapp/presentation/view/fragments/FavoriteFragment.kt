@@ -88,7 +88,6 @@ class FavoriteFragment : Fragment() {
                             binding.emptyList.show()
                         }
                         adapter.notifyDataSetChanged()
-
                     }
                 }
                 ERROR -> Log.e("Error", resource.message.toString())

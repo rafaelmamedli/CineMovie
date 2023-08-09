@@ -3,7 +3,7 @@ package com.rafael.movieapp.presentation.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rafael.movieapp.data.models.remote.Movie
+import com.rafael.movieapp.data.models.remote.movie.Movie
 import com.rafael.movieapp.data.util.Resource
 import com.rafael.movieapp.domein.use_case.remote.GetMovieByNameUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetRecentMoviesUseCase

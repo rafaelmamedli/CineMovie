@@ -1,4 +1,4 @@
-package com.rafael.movieapp.data.models.remote
+package com.rafael.movieapp.data.models.remote.movie
 
 import android.os.Parcelable
 import androidx.room.Entity
