@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class DeleteFavouritesUseCase @Inject constructor(private val repo: FavMoviesRepository) {
 
-    suspend fun delete(favMovie: FavMovies) = repo.deleteFavMovie(favMovie)
+    suspend operator fun invoke(favMovie: FavMovies) = repo.deleteFavMovie(favMovie)
 
 
 }

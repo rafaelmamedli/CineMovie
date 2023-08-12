@@ -30,7 +30,7 @@ class TrailerViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.Main) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    trailerUseCase.getTrailer(movieId)
+                    trailerUseCase.invoke(movieId)
                 }
                 result.collectLatest { resource ->
                     resource.data?.results?.let { results ->

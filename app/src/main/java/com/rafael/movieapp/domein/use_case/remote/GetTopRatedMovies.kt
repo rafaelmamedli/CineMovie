@@ -7,5 +7,5 @@ class GetTopRatedMovies @Inject constructor(
     private val repo: MovieRepository
 ) {
 
-    suspend fun getTop(page: String) = repo.getTopRatedMovies(page)
+    suspend operator fun invoke(page: String) = repo.getTopRatedMovies(page)
 }

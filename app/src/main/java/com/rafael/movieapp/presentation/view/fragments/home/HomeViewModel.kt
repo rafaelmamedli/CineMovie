@@ -1,6 +1,7 @@
 package com.rafael.movieapp.presentation.view.fragments.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.rafael.movieapp.data.models.remote.movie.Movie
 import com.rafael.movieapp.data.util.Resource
 import com.rafael.movieapp.domein.use_case.remote.GetPopularMoviesUseCase
@@ -38,30 +39,22 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(Resource.loading(null))
     val topRatedMovieList = _topRatedMovieList.asStateFlow()
 
-    private val viewModelJob = Job()
-    private val viewModelScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     init {
         refreshData()
     }
 
     fun refreshData() {
-        viewModelScope.launch {
-            val popularJob = launch { getPopularMovies("1") }
-            val recentJob = launch { getRecentMovies("1") }
-            val topRatedJob = launch { getTopRatedMovies("1") }
-
-            popularJob.join()
-            recentJob.join()
-            topRatedJob.join()
-        }
+        getPopularMovies("1")
+        getRecentMovies("1")
+        getTopRatedMovies("1")
     }
 
     private fun getPopularMovies(page: String) {
         viewModelScope.launch(Dispatchers.Main) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCasePopular.getPopular(page)
+                    useCasePopular.invoke(page)
                 }
                 result.collectLatest {
                     _popularMovieList.value = it
@@ -79,7 +72,7 @@ class HomeViewModel @Inject constructor(
             try {
                 val result =
                     withContext(Dispatchers.IO) {
-                        useCaseRecent.getRecent(page)
+                        useCaseRecent.invoke(page)
                     }
 
                 result.collectLatest {
@@ -98,7 +91,7 @@ class HomeViewModel @Inject constructor(
         ) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCaseTopRated.getTop(page)
+                    useCaseTopRated.invoke(page)
                 }
                 result.collectLatest {
                     _topRatedMovieList.value = it
@@ -111,9 +104,6 @@ class HomeViewModel @Inject constructor(
 
         }
     }
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
+
 }
 

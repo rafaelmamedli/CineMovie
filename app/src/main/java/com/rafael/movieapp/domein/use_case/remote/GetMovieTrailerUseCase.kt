@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class GetMovieTrailerUseCase @Inject constructor(private val repo: MovieRepository) {
 
-    suspend fun getTrailer(movieId:Int) = repo.getMovieTrailer(movieId)
+    suspend operator fun invoke(movieId:Int) = repo.getMovieTrailer(movieId)
 
 
 }

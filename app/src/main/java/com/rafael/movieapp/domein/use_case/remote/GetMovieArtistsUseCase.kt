@@ -5,7 +5,7 @@ import javax.inject.Inject
 
     class GetMovieArtistsUseCase @Inject constructor(private val repo: MovieRepository) {
 
-        suspend fun getArtists(movieId: Int) = repo.getArtists(movieId)
+        suspend operator fun invoke(movieId: Int) = repo.getArtists(movieId)
     }
 
 

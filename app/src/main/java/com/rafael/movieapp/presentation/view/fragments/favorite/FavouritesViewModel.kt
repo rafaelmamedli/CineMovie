@@ -33,12 +33,12 @@ class FavouritesViewModel @Inject constructor(
     }
 
     fun deleteFavMovie(favMovie: FavMovies) = viewModelScope.launch(Dispatchers.IO) {
-        useCaseDeleteMovie.delete(favMovie)
+        useCaseDeleteMovie.invoke(favMovie)
     }
 
     private fun getAllFavMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            useCaseGetFavMovies.getAll()
+            useCaseGetFavMovies.invoke()
                 .catch { e ->
                     _getFavMovies.value = Resource.error("Error getting fav movies", null)
                 }

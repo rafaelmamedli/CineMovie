@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class GetAllFavouritesUseCase @Inject constructor(private val repo: FavMoviesRepository) {
 
-    suspend fun getAll() = repo.getAllFavMovies()
+    suspend operator fun invoke() = repo.getAllFavMovies()
 
 
 }
