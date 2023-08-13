@@ -44,11 +44,11 @@ class DetailViewModel
 
 
     fun addFavMovie(favMovie: FavMovies) = viewModelScope.launch(Dispatchers.IO) {
-        useCaseAddFavMovie.invoke(favMovie)
+        useCaseAddFavMovie(favMovie)
     }
 
     fun deleteFavMovie(favMovie: FavMovies) = viewModelScope.launch(Dispatchers.IO) {
-        useCaseDeleteMovie.invoke(favMovie)
+        useCaseDeleteMovie(favMovie)
     }
 
     fun crewMovie(movieId: Int) =
@@ -56,7 +56,7 @@ class DetailViewModel
 
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCaseArtists.invoke(movieId)
+                    useCaseArtists(movieId)
                 }
                 result.collectLatest {
                     _getCrew.value = it
@@ -72,7 +72,7 @@ class DetailViewModel
 
     private fun getAllFavMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            useCaseGetFavMovies.invoke()
+            useCaseGetFavMovies()
                 .catch { e ->
                     _getFavMovies.value = Resource.error("Error getting fav movies", null)
                 }

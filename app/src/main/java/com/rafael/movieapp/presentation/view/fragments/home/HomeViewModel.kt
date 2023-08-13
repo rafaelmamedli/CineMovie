@@ -8,9 +8,7 @@ import com.rafael.movieapp.domein.use_case.remote.GetPopularMoviesUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetRecentMoviesUseCase
 import com.rafael.movieapp.domein.use_case.remote.GetTopRatedMovies
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -54,7 +52,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.Main) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCasePopular.invoke(page)
+                    useCasePopular(page)
                 }
                 result.collectLatest {
                     _popularMovieList.value = it
@@ -72,7 +70,7 @@ class HomeViewModel @Inject constructor(
             try {
                 val result =
                     withContext(Dispatchers.IO) {
-                        useCaseRecent.invoke(page)
+                        useCaseRecent(page)
                     }
 
                 result.collectLatest {
@@ -91,7 +89,7 @@ class HomeViewModel @Inject constructor(
         ) {
             try {
                 val result = withContext(Dispatchers.IO) {
-                    useCaseTopRated.invoke(page)
+                    useCaseTopRated(page)
                 }
                 result.collectLatest {
                     _topRatedMovieList.value = it

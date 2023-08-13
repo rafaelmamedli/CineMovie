@@ -82,8 +82,6 @@ class HomeFragment : Fragment() {
     private fun observeData() {
 
         lifecycleScope.launch {
-
-
             val job1 = async {
                 viewModel.popularMovieList.collect { resource ->
                     when (resource.status) {
