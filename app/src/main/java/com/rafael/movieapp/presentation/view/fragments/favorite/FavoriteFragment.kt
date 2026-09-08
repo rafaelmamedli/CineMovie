@@ -83,6 +83,8 @@ class FavoriteFragment : Fragment() {
                         listFavMovies.addAll(it.reversed())
                         if (listFavMovies.isEmpty()) {
                             binding.emptyList.show()
+                        } else {
+                            binding.emptyList.gone()
                         }
                         adapter.notifyDataSetChanged()
                     }

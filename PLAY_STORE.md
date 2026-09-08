@@ -67,12 +67,14 @@ Requirements of the current build setup:
 `CineMovie — Movies & Trailers`
 
 **Short description (max 80):**
-`Discover popular, top rated and new movies, watch trailers and save favourites.`
+`Movies, trailers and favourites — with a look that matches your favourite film.`
 
 **Full description (max 4000):**
 ```
 CineMovie is a free, ad-free movie catalogue powered by TMDB.
 
+• Dress the app up as the movie you love — pick the Matrix or the Dune skin and
+  the whole interface changes colours and typography
 • Popular, top rated and recently released movies on one home screen
 • Search any movie by name
 • Movie details: poster, rating, release date, synopsis and cast

@@ -40,9 +40,21 @@ class SeeAllFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpHeader()
         adapterSetter()
         getMovies()
         toDetail()
+    }
+
+    private fun setUpHeader() {
+        val titleRes = when (arguments?.getString("type", null)) {
+            TOP_RATED_MOVIE -> R.string.top_imdb_movies
+            POPULAR_MOVIE -> R.string.most_popular
+            RECENT_MOVIE -> R.string.recent_movies
+            else -> R.string.popular_movies
+        }
+        binding.txtScreenTitle.setText(titleRes)
+        binding.btnBack.setOnClickListener { findNavController().navigateUp() }
     }
 
     private fun toDetail(){

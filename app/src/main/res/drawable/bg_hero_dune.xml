@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dune skin: warm sand haze fading into the dark background. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="270"
+        android:startColor="#3DE9A63C"
+        android:centerColor="#14100A06"
+        android:endColor="#100A06"
+        android:type="linear" />
+</shape>

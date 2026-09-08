@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <!-- ==================================================================
+         CineMovie is skinnable: every screen paints itself from theme
+         attributes (?attr/colorSurface, ?attr/colorPrimary, ...), never from
+         a raw colour. A new movie skin = one palette below + one style in
+         themes.xml + one entry in CineTheme.kt.
+         ================================================================== -->
+
+    <!-- ===== Skin: Matrix ("follow the white rabbit") ===== -->
+    <color name="matrix_background">#04060A</color>
+    <color name="matrix_surface">#0B1310</color>
+    <color name="matrix_surface_variant">#12211A</color>
+    <color name="matrix_outline">#1E3A28</color>
+    <color name="matrix_accent">#22FF6A</color>
+    <color name="matrix_on_accent">#00230C</color>
+    <color name="matrix_text_primary">#E4FFEC</color>
+    <color name="matrix_text_secondary">#7FB794</color>
+
+    <!-- ===== Skin: Dune ("fear is the mind-killer") ===== -->
+    <color name="dune_background">#100A06</color>
+    <color name="dune_surface">#1C130D</color>
+    <color name="dune_surface_variant">#2A1D14</color>
+    <color name="dune_outline">#43301F</color>
+    <color name="dune_accent">#E9A63C</color>
+    <color name="dune_on_accent">#2A1704</color>
+    <color name="dune_text_primary">#F8EEDF</color>
+    <color name="dune_text_secondary">#BC9F80</color>
+
+    <!-- ===== Skin independent ===== -->
     <color name="white">#FFFFFFFF</color>
-    <color name="yellow">#FFC20E</color>
+    <color name="black">#FF000000</color>
+    <color name="scrim_strong">#CC000000</color>
+    <color name="scrim_medium">#99000000</color>
 
-
-    <color name="gray">#d2d3db</color>
-    <color name="background_gray">#656565</color>
-    <color name="black_10">#202125</color>
-<!--    <color name="black_30">#303135</color>-->
-    <color name="black_30">#BF303135</color>
-
-
-    <color name="black_20">#202125</color>
+    <!-- Legacy names still referenced by a few drawables -->
+    <color name="gray">#9C9CA8</color>
+    <color name="orange">#FF5C39</color>
+    <color name="yellow">#F5C518</color>
+    <color name="black_10">#0A0A0F</color>
+    <color name="black_20">#14141B</color>
+    <color name="black_30">#1E1E28</color>
     <color name="black_50">#030303</color>
-
-    <color name="orange">#ff6b1e</color>
+    <color name="background_gray">#0A0A0F</color>
 
 </resources>

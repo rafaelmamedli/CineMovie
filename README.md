@@ -4,6 +4,22 @@ Free, ad-free movie catalogue for Android, built on the TMDB API.
 MVVM + Clean Architecture, Kotlin Flows, Retrofit/OkHttp, Room, Dagger Hilt,
 Navigation Component, Bottom Sheet Dialog, WebView trailers.
 
+## Movie skins
+
+The app is fully skinnable: from the palette button on the home screen the user
+picks the film their app should look like, and the choice is remembered.
+Shipping skins: **Matrix** (black, phosphor green, monospace) and **Dune**
+(warm sand amber). No screen hardcodes a colour or a font — every layout paints
+itself from theme attributes, so a new skin is three steps:
+
+1. a palette in `res/values/colors.xml`;
+2. a `Theme.CineMovie.<Name>` style plus its `TextAppearance.<Name>.*` styles
+   in `res/values/themes.xml` / `styles.xml`;
+3. one entry in `presentation/theme/CineTheme.kt`.
+
+The theme picker screen, the preview cards and the persistence pick it up
+automatically.
+
 ## Getting started
 
 1. Get a free API key at <https://www.themoviedb.org/settings/api>.

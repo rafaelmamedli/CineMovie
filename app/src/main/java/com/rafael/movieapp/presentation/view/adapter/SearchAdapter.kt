@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.rafael.movieapp.data.util.glide
 import com.rafael.movieapp.data.models.remote.movie.Result
 import com.rafael.movieapp.databinding.LayoutSearchMovieBinding
 
@@ -21,9 +21,7 @@ class SearchAdapter(private val list: MutableList<Result>): RecyclerView.Adapter
         @SuppressLint("NewApi")
         fun bind(data: Result) {
             binding.apply {
-                Glide.with(posterSearch)
-                    .load("https://image.tmdb.org/t/p/w342/" + data.poster_path)
-                    .into(posterSearch)
+                posterSearch.glide(data.poster_path)
                     txtImdb.text = data.vote_average.toString()
                     itemView.setOnClickListener {
                         itemClickListener?.invoke(data)

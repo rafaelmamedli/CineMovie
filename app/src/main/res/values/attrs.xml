@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Typography slots. Each skin points these at its own font family. -->
+    <attr name="textAppearanceCineScreen" format="reference" />
+    <attr name="textAppearanceCineSection" format="reference" />
+    <attr name="textAppearanceCineCardTitle" format="reference" />
+    <attr name="textAppearanceCineBody" format="reference" />
+    <attr name="textAppearanceCineCaption" format="reference" />
+    <attr name="textAppearanceCineRating" format="reference" />
+    <attr name="textAppearanceCineLogo" format="reference" />
+
+    <!-- Skin specific extras. -->
+    <attr name="cineRatingColor" format="color" />
+    <attr name="cineHeroGradient" format="reference" />
+
+</resources>

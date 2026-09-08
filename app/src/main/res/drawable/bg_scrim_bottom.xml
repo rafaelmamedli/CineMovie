@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bottom-up scrim so white text stays readable on top of any poster. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="90"
+        android:startColor="#F2000000"
+        android:centerColor="#66000000"
+        android:endColor="#00000000"
+        android:type="linear" />
+</shape>

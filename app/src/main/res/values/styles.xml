@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ===================================================================
+         Typography. The base styles define the scale (size / weight / colour
+         from theme attributes); each skin subclasses them to swap the font
+         family only, so the layout files never mention a font.
+         =================================================================== -->
+
+    <style name="Base.TextAppearance.Cine" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Base.TextAppearance.Cine.Logo">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.18</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Base.TextAppearance.Cine.Screen">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="Base.TextAppearance.Cine.Section">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="Base.TextAppearance.Cine.CardTitle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Base.TextAppearance.Cine.Body">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Base.TextAppearance.Cine.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Base.TextAppearance.Cine.Rating">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/cineRatingColor</item>
+    </style>
+
+    <!-- ===== Matrix: terminal monospace ===== -->
+    <style name="TextAppearance.Matrix.Logo" parent="Base.TextAppearance.Cine.Logo">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+    <style name="TextAppearance.Matrix.Screen" parent="Base.TextAppearance.Cine.Screen">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+    <style name="TextAppearance.Matrix.Section" parent="Base.TextAppearance.Cine.Section">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+    <style name="TextAppearance.Matrix.CardTitle" parent="Base.TextAppearance.Cine.CardTitle">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+    <style name="TextAppearance.Matrix.Body" parent="Base.TextAppearance.Cine.Body">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="TextAppearance.Matrix.Caption" parent="Base.TextAppearance.Cine.Caption">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+    <style name="TextAppearance.Matrix.Rating" parent="Base.TextAppearance.Cine.Rating">
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
+    <!-- ===== Dune: rounded, warm ===== -->
+    <style name="TextAppearance.Dune.Logo" parent="Base.TextAppearance.Cine.Logo">
+        <item name="android:fontFamily">@font/comfortaa</item>
+    </style>
+    <style name="TextAppearance.Dune.Screen" parent="Base.TextAppearance.Cine.Screen">
+        <item name="android:fontFamily">@font/comfortaa</item>
+    </style>
+    <style name="TextAppearance.Dune.Section" parent="Base.TextAppearance.Cine.Section">
+        <item name="android:fontFamily">@font/comfortaa</item>
+    </style>
+    <style name="TextAppearance.Dune.CardTitle" parent="Base.TextAppearance.Cine.CardTitle">
+        <item name="android:fontFamily">@font/comfortaa</item>
+    </style>
+    <style name="TextAppearance.Dune.Body" parent="Base.TextAppearance.Cine.Body">
+        <item name="android:fontFamily">@font/comfortaa</item>
+    </style>
+    <style name="TextAppearance.Dune.Caption" parent="Base.TextAppearance.Cine.Caption">
+        <item name="android:fontFamily">@font/comfortaa</item>
+    </style>
+    <style name="TextAppearance.Dune.Rating" parent="Base.TextAppearance.Cine.Rating">
+        <item name="android:fontFamily">@font/comfortaa</item>
+    </style>
+
+    <!-- ===================================================================
+         Components
+         =================================================================== -->
+
+    <style name="Widget.Cine.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">?attr/colorSurface</item>
+        <item name="cardCornerRadius">18dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">?attr/colorOutline</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="Widget.Cine.Card.Poster">
+        <item name="cardBackgroundColor">?attr/colorSurfaceVariant</item>
+        <item name="cardCornerRadius">14dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Widget.Cine.Card.Hero">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardBackgroundColor">?attr/colorSurfaceVariant</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Widget.Cine.Button" parent="Widget.Material3.Button">
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="iconTint">?attr/colorOnPrimary</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.Cine.Button.Link" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="iconTint">?attr/colorPrimary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">4dp</item>
+    </style>
+
+    <!-- Small "8.4 ★" chip drawn on top of a poster -->
+    <style name="Widget.Cine.RatingChip" parent="">
+        <item name="android:background">@drawable/bg_rating_chip</item>
+        <item name="android:drawableStart">@drawable/ic_star_12</item>
+        <item name="android:drawableTint">?attr/cineRatingColor</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:paddingStart">7dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceCineRating</item>
+    </style>
+
+</resources>

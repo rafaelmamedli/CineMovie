@@ -1,98 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<!-- Hero card of the "Most popular" carousel: backdrop + scrim + title. -->
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:backgroundTint="@color/black_20"
-    android:layout_margin="8dp"
-    android:layout_gravity="center_horizontal"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    style="@style/Widget.Cine.Card.Hero"
+    android:layout_width="286dp"
+    android:layout_height="172dp"
+    android:layout_marginEnd="12dp"
+    android:foreground="?attr/selectableItemBackground">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/posterImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/placeholder_poster"
+            android:contentDescription="@string/cd_backdrop"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_scrim_bottom" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:elevation="4dp"
-            app:cardCornerRadius="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:padding="14dp">
 
+            <TextView
+                android:id="@+id/txtImdb"
+                style="@style/Widget.Cine.RatingChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                tools:text="8.4" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="?attr/textAppearanceCineSection"
+                android:textColor="@color/white"
+                tools:text="Dune: Part Two" />
+        </LinearLayout>
+    </FrameLayout>
 
-                        <ImageView
-                            android:id="@+id/posterImage"
-                            android:layout_width="370dp"
-                            android:layout_height="170dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/background"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <LinearLayout
-                            android:id="@+id/linearLayout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:layout_marginEnd="38dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="@drawable/round_backgorund"
-                            android:backgroundTint="@color/black_30"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent">
-
-                                <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
-                                    android:layout_gravity="center_vertical"
-                                    android:src="@drawable/baseline_star_24" />
-
-                                <TextView
-                                    android:id="@+id/txtImdb"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:layout_marginEnd="6dp"
-                                    android:text="8.7"
-                                    android:textColor="@color/white"
-                                    android:textSize="22sp" />
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txtTitle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:gravity="start"
-                            android:text="TextView"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

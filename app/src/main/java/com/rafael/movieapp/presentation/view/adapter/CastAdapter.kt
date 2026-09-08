@@ -3,7 +3,7 @@ package com.rafael.movieapp.presentation.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.rafael.movieapp.data.util.glide
 import com.rafael.movieapp.data.models.remote.detail.Cast
 import com.rafael.movieapp.databinding.LayoutCrewBinding
 
@@ -14,9 +14,7 @@ class CastAdapter(private val list: MutableList<Cast>) : RecyclerView.Adapter<Ca
         fun bind(data: Cast) {
             binding.apply {
                 txtTitle.text = data.name
-                Glide.with(imageViewArtist)
-                    .load("https://image.tmdb.org/t/p/w342/" + data.profile_path)
-                    .into(imageViewArtist)
+                imageViewArtist.glide(data.profile_path)
             }
         }
     }

@@ -75,6 +75,7 @@ class HomeFragment : Fragment() {
         getAdapters()
         observeData()
         goToSeeAll()
+        goToThemes()
         toDetail()
     }
 
@@ -198,14 +199,21 @@ class HomeFragment : Fragment() {
     }
 
 
+    private fun goToThemes() {
+        binding.btnThemes.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_themeFragment)
+        }
+    }
+
     private fun goToSeeAll() {
 
+        // "Most popular" row shows the popular movies, "Top rated" the top rated ones.
         binding.seeAll1.setOnClickListener {
             findNavController().navigate(
                 R.id.action_homeFragment_to_seeAllFragment,
                 Bundle().apply {
-                    putString("type", TOP_RATED_MOVIE)
-                    putParcelable(TOP_RATED, objectPopular)
+                    putString("type", POPULAR_MOVIE)
+                    putParcelable(POPULAR, objectPopular)
 
                 })
 
@@ -214,8 +222,8 @@ class HomeFragment : Fragment() {
             findNavController().navigate(
                 R.id.action_homeFragment_to_seeAllFragment,
                 Bundle().apply {
-                    putString("type", POPULAR_MOVIE)
-                    putParcelable(POPULAR, objectTopRated)
+                    putString("type", TOP_RATED_MOVIE)
+                    putParcelable(TOP_RATED, objectTopRated)
 
                 })
         }

@@ -1,67 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Grid tile of the search screen. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="6dp"
     android:orientation="vertical">
 
-
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
+        style="@style/Widget.Cine.Card.Poster"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="2dp"
-        android:layout_margin="8dp"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.33">
+        android:layout_height="248dp"
+        android:foreground="?attr/selectableItemBackground">
 
-
-        <ImageView
-            android:id="@+id/posterSearch"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="650px"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher_round" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/round_backgorund"
-            android:backgroundTint="@color/black_30"
-            app:layout_constraintEnd_toEndOf="@id/cardView"
-            app:layout_constraintTop_toTopOf="@id/cardView">
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="6dp"
-                android:src="@drawable/baseline_star_24" />
+                android:id="@+id/posterSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/placeholder_poster"
+                android:contentDescription="@string/cd_poster"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/abc" />
 
             <TextView
                 android:id="@+id/txtImdb"
+                style="@style/Widget.Cine.RatingChip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="6dp"
-                android:maxLength="3"
-                android:text="@string/_8_7"
-                android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:layout_gravity="top|start"
+                android:layout_margin="8dp"
+                tools:text="7.9" />
+        </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

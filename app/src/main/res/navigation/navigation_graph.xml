@@ -22,6 +22,13 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
         <action
+            android:id="@+id/action_homeFragment_to_themeFragment"
+            app:destination="@id/themeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
             android:id="@+id/action_homeFragment_to_seeAllFragment"
             app:destination="@id/seeAllFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -90,6 +97,11 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.rafael.movieapp.presentation.view.fragments.theme.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_theme" />
     <dialog
         android:id="@+id/trailerFragment"
         android:name="com.rafael.movieapp.presentation.view.fragments.trailer.TrailerFragment"

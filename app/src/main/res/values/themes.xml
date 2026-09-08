@@ -1,24 +1,86 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!--
-      CineMovie is a dark themed app: all layouts are drawn on a dark surface with
-      light text, so the theme is pinned to the dark Material 3 variant instead of
-      following the system light/dark setting (light mode used to render black text
-      on the dark background).
-    -->
-    <style name="Base.Theme.MovieApp" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorOnPrimary">@color/black_10</item>
-        <item name="colorSurface">@color/black_10</item>
-        <item name="colorOnSurface">@color/white</item>
-        <item name="android:windowBackground">@color/black_10</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">@color/gray</item>
-        <!-- Ignored from Android 15 on (edge to edge), kept for older versions. -->
-        <item name="android:statusBarColor">@color/black_10</item>
-        <item name="android:navigationBarColor">@color/black_10</item>
+
+    <!-- ===================================================================
+         Every skin inherits from this base: same shapes, same typography
+         slots, same widget styles. A skin only redefines colours, the font
+         family behind each typography slot and its own hero gradient.
+         =================================================================== -->
+    <style name="Base.Theme.CineMovie" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- component defaults -->
+        <item name="materialCardViewStyle">@style/Widget.Cine.Card</item>
+        <item name="materialButtonStyle">@style/Widget.Cine.Button</item>
+
+        <!-- system bars: from Android 15 the colours are ignored and the
+             content is laid out edge to edge (see MainActivity) -->
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.MovieApp" parent="Base.Theme.MovieApp" />
+    <!-- ===== Skin 1: Matrix ============================================ -->
+    <style name="Theme.CineMovie.Matrix" parent="Base.Theme.CineMovie">
+        <item name="android:colorBackground">@color/matrix_background</item>
+        <item name="android:windowBackground">@color/matrix_background</item>
+        <item name="colorSurface">@color/matrix_surface</item>
+        <item name="colorSurfaceVariant">@color/matrix_surface_variant</item>
+        <item name="colorOnSurface">@color/matrix_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/matrix_text_secondary</item>
+        <item name="colorOutline">@color/matrix_outline</item>
+        <item name="colorPrimary">@color/matrix_accent</item>
+        <item name="colorOnPrimary">@color/matrix_on_accent</item>
+        <item name="colorSecondary">@color/matrix_accent</item>
+        <item name="colorOnSecondary">@color/matrix_on_accent</item>
+        <item name="colorError">#FF5252</item>
+        <item name="android:textColorPrimary">@color/matrix_text_primary</item>
+        <item name="android:textColorSecondary">@color/matrix_text_secondary</item>
+        <item name="android:textColorHint">@color/matrix_text_secondary</item>
+        <item name="android:editTextColor">@color/matrix_text_primary</item>
+
+        <item name="cineRatingColor">@color/matrix_accent</item>
+        <item name="cineHeroGradient">@drawable/bg_hero_matrix</item>
+
+        <item name="textAppearanceCineLogo">@style/TextAppearance.Matrix.Logo</item>
+        <item name="textAppearanceCineScreen">@style/TextAppearance.Matrix.Screen</item>
+        <item name="textAppearanceCineSection">@style/TextAppearance.Matrix.Section</item>
+        <item name="textAppearanceCineCardTitle">@style/TextAppearance.Matrix.CardTitle</item>
+        <item name="textAppearanceCineBody">@style/TextAppearance.Matrix.Body</item>
+        <item name="textAppearanceCineCaption">@style/TextAppearance.Matrix.Caption</item>
+        <item name="textAppearanceCineRating">@style/TextAppearance.Matrix.Rating</item>
+    </style>
+
+    <!-- ===== Skin 2: Dune ============================================== -->
+    <style name="Theme.CineMovie.Dune" parent="Base.Theme.CineMovie">
+        <item name="android:colorBackground">@color/dune_background</item>
+        <item name="android:windowBackground">@color/dune_background</item>
+        <item name="colorSurface">@color/dune_surface</item>
+        <item name="colorSurfaceVariant">@color/dune_surface_variant</item>
+        <item name="colorOnSurface">@color/dune_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/dune_text_secondary</item>
+        <item name="colorOutline">@color/dune_outline</item>
+        <item name="colorPrimary">@color/dune_accent</item>
+        <item name="colorOnPrimary">@color/dune_on_accent</item>
+        <item name="colorSecondary">@color/dune_accent</item>
+        <item name="colorOnSecondary">@color/dune_on_accent</item>
+        <item name="colorError">#FF6E5B</item>
+        <item name="android:textColorPrimary">@color/dune_text_primary</item>
+        <item name="android:textColorSecondary">@color/dune_text_secondary</item>
+        <item name="android:textColorHint">@color/dune_text_secondary</item>
+        <item name="android:editTextColor">@color/dune_text_primary</item>
+
+        <item name="cineRatingColor">@color/dune_accent</item>
+        <item name="cineHeroGradient">@drawable/bg_hero_dune</item>
+
+        <item name="textAppearanceCineLogo">@style/TextAppearance.Dune.Logo</item>
+        <item name="textAppearanceCineScreen">@style/TextAppearance.Dune.Screen</item>
+        <item name="textAppearanceCineSection">@style/TextAppearance.Dune.Section</item>
+        <item name="textAppearanceCineCardTitle">@style/TextAppearance.Dune.CardTitle</item>
+        <item name="textAppearanceCineBody">@style/TextAppearance.Dune.Body</item>
+        <item name="textAppearanceCineCaption">@style/TextAppearance.Dune.Caption</item>
+        <item name="textAppearanceCineRating">@style/TextAppearance.Dune.Rating</item>
+    </style>
+
+    <!-- Launch theme (before the saved skin is applied) and legacy alias. -->
+    <style name="Theme.CineMovie" parent="Theme.CineMovie.Matrix" />
+    <style name="Theme.MovieApp" parent="Theme.CineMovie.Matrix" />
+
 </resources>

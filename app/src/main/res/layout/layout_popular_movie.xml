@@ -1,79 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Poster tile used by the horizontal "Top rated" row. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="132dp"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="8dp"
+    android:layout_marginEnd="12dp"
     android:orientation="vertical">
 
-
-
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
-        android:layout_width="342px"
-        android:layout_height="513px"
-        android:elevation="2dp"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        style="@style/Widget.Cine.Card.Poster"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:foreground="?attr/selectableItemBackground">
 
-
-        <ImageView
-            android:id="@+id/posterImage"
-            android:src="@mipmap/ic_launcher_round"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <LinearLayout
-            android:background="@drawable/round_backgorund"
-            android:backgroundTint="@color/black_30"
-            android:layout_gravity="end"
-            android:id="@+id/linearLayout"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@id/cardView"
-            app:layout_constraintEnd_toEndOf="@id/cardView">
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/baseline_star_24"
-                android:layout_width="25dp"
-                android:layout_height="25dp"/>
+                android:id="@+id/posterImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/placeholder_poster"
+                android:contentDescription="@string/cd_poster"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/abc" />
 
             <TextView
-                android:textColor="@color/white"
-                android:layout_marginEnd="2dp"
-                android:layout_gravity="center_vertical"
                 android:id="@+id/txtImdb"
-                android:textSize="14sp"
-                android:text="@string/vote_average"
+                style="@style/Widget.Cine.RatingChip"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-
-
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:layout_margin="8dp"
+                tools:text="8.4" />
+        </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:textColor="@color/white"
         android:id="@+id/txtTitle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center_horizontal"
-        android:text="@string/movie_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:minLines="2"
+        android:textAppearance="?attr/textAppearanceCineCardTitle"
+        tools:text="The Shawshank Redemption" />
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

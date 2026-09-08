@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One selectable movie skin. The preview colours come from the skin itself,
+     so the card looks like the theme it offers even before it is applied. -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardTheme"
+    style="@style/Widget.Cine.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Skin preview strip -->
+        <FrameLayout
+            android:id="@+id/previewStrip"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            tools:background="@color/matrix_background">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="18dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/swatchAccent"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_swatch"
+                    tools:backgroundTint="@color/matrix_accent" />
+
+                <View
+                    android:id="@+id/swatchSurface"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/bg_swatch"
+                    tools:backgroundTint="@color/matrix_surface_variant" />
+
+                <View
+                    android:id="@+id/swatchText"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/bg_swatch"
+                    tools:backgroundTint="@color/matrix_text_primary" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgSelected"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="18dp"
+                android:contentDescription="@string/theme_active"
+                android:src="@drawable/ic_check_24"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/txtThemeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceCineSection"
+                tools:text="Matrix" />
+
+            <TextView
+                android:id="@+id/txtThemeTagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textAppearance="?attr/textAppearanceCineCaption"
+                tools:text="Follow the white rabbit" />
+        </LinearLayout>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

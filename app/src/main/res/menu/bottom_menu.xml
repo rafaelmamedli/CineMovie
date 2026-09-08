@@ -5,17 +5,18 @@
         android:id="@+id/home"
         android:icon="@drawable/baseline_home_24"
         android:title="@string/home"
-        app:cnb_iconColor="@color/orange"/>
+        app:cnb_iconColor="?attr/colorPrimary" />
 
     <item
         android:id="@+id/search"
         android:icon="@drawable/baseline_search_24"
         android:title="@string/search"
-        app:cnb_iconColor="@color/orange"/>
+        app:cnb_iconColor="?attr/colorPrimary" />
+
     <item
         android:id="@+id/favourites"
         android:icon="@drawable/baseline_favorite_24"
         android:title="@string/favourites"
-        app:cnb_iconColor="@color/orange"/>
+        app:cnb_iconColor="?attr/colorPrimary" />
 
 </menu>

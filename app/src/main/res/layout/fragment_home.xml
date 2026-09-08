@@ -1,178 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:background="?android:attr/colorBackground"
     tools:context=".presentation.view.fragments.home.HomeFragment">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:padding="180dp"
-           />
-
-    <TextView
-        android:visibility="gone"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:text="@string/internet_problem"
-        android:id="@+id/txtErrorMessage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        android:scrollbars="none">
 
         <LinearLayout
-            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- ===== Header ===== -->
             <LinearLayout
-                android:layout_marginTop="12dp"
-                android:paddingStart="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:background="?attr/cineHeroGradient"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="1dp"
-                >
-
-                <TextView
-                    android:layout_gravity="center_vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
-                    android:layout_weight="8"
-                    android:text="@string/most_popular"/>
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="18dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/seeAll1"
-                        android:gravity="end"
-                        android:src="@drawable/baseline_chevron_right_24"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textAppearance="?attr/textAppearanceCineLogo" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/home_greeting"
+                        android:textAppearance="?attr/textAppearanceCineCaption" />
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/btnThemes"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/cd_themes"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_palette_24"
+                    app:tint="?attr/colorPrimary" />
             </LinearLayout>
 
+            <!-- ===== Most popular ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/most_popular"
+                    android:textAppearance="?attr/textAppearanceCineSection" />
+
+                <TextView
+                    android:id="@+id/seeAll1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableEnd="@drawable/baseline_chevron_right_24"
+                    android:drawableTint="?attr/colorPrimary"
+                    android:paddingStart="8dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="6dp"
+                    android:text="@string/see_all"
+                    android:textAppearance="?attr/textAppearanceCineCaption"
+                    android:textColor="?attr/colorPrimary" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_Top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:foregroundGravity="center"
-                android:gravity="center"
-                />
-
-            <LinearLayout
-                android:paddingStart="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:clipToPadding="false"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
-                android:paddingBottom="1dp"
-                >
+                android:paddingStart="20dp"
+                android:paddingEnd="8dp"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/layout_topimdb_movie" />
+
+            <!-- ===== Top rated ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="12dp">
 
                 <TextView
-                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
-                    android:layout_weight="8"
-                    android:text="@string/top_imdb_movies"/>
+                    android:layout_weight="1"
+                    android:text="@string/top_imdb_movies"
+                    android:textAppearance="?attr/textAppearanceCineSection" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/seeAll2"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/seeAll2"
-                        android:gravity="end"
-                        android:src="@drawable/baseline_chevron_right_24"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
-
-                </LinearLayout>
-
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableEnd="@drawable/baseline_chevron_right_24"
+                    android:drawableTint="?attr/colorPrimary"
+                    android:paddingStart="8dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="6dp"
+                    android:text="@string/see_all"
+                    android:textAppearance="?attr/textAppearanceCineCaption"
+                    android:textColor="?attr/colorPrimary" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="8dp"
                 android:id="@+id/recyclerView_Popular"
-                android:padding="4dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
-            <LinearLayout
-                android:paddingStart="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clipToPadding="false"
                 android:orientation="horizontal"
-                android:paddingBottom="1dp"
-                >
+                android:paddingStart="20dp"
+                android:paddingEnd="8dp"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/layout_popular_movie" />
+
+            <!-- ===== In theatres now ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="12dp">
 
                 <TextView
-                    android:layout_gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
-                    android:layout_weight="8"
-                    android:text="@string/recent_movies"/>
+                    android:layout_weight="1"
+                    android:text="@string/recent_movies"
+                    android:textAppearance="?attr/textAppearanceCineSection" />
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/seeAll3"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/seeAll3"
-                        android:gravity="end"
-                        android:src="@drawable/baseline_chevron_right_24"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
-
-                </LinearLayout>
-
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableEnd="@drawable/baseline_chevron_right_24"
+                    android:drawableTint="?attr/colorPrimary"
+                    android:paddingStart="8dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="6dp"
+                    android:text="@string/see_all"
+                    android:textAppearance="?attr/textAppearanceCineCaption"
+                    android:textColor="?attr/colorPrimary" />
             </LinearLayout>
 
-
             <androidx.recyclerview.widget.RecyclerView
-                android:nestedScrollingEnabled="false"
                 android:id="@+id/recyclerView_Recent"
-                android:padding="6dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:nestedScrollingEnabled="false"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/layout_recent_movie" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:text="@string/tmdb_attribution"
+                android:textAppearance="?attr/textAppearanceCineCaption"
+                android:textSize="10sp" />
+
         </LinearLayout>
-
-
-
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="?attr/colorPrimary" />
+
+    <TextView
+        android:id="@+id/txtErrorMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="32dp"
+        android:text="@string/internet_problem"
+        android:textAppearance="?attr/textAppearanceCineBody"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</FrameLayout>

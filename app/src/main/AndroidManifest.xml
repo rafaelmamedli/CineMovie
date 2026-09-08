@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="false"
         android:enableOnBackInvokedCallback="true"
-        android:theme="@style/Theme.MovieApp"
+        android:theme="@style/Theme.CineMovie"
         tools:targetApi="33">
         <activity
             android:name=".MainActivity"

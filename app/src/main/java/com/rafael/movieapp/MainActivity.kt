@@ -7,6 +7,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.rafael.movieapp.databinding.ActivityMainBinding
+import com.rafael.movieapp.presentation.theme.ThemePreferences
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // The movie skin has to be installed before the first view is inflated.
+        setTheme(ThemePreferences(this).theme.styleRes)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

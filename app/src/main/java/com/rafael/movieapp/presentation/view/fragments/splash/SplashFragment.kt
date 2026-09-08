@@ -11,6 +11,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import com.rafael.movieapp.R
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.databinding.FragmentSplashBinding
+import com.rafael.movieapp.presentation.theme.ThemePreferences
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -31,6 +32,8 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.txtTagline.setText(ThemePreferences(requireContext()).theme.taglineRes)
 
         // Tied to the view lifecycle: rotating or leaving the app can no longer
         // trigger a navigation on a destroyed fragment.

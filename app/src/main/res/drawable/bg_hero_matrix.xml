@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Matrix skin: cold phosphor glow fading into the black background. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:angle="270"
+        android:startColor="#3322FF6A"
+        android:centerColor="#1204060A"
+        android:endColor="#04060A"
+        android:type="linear" />
+</shape>
