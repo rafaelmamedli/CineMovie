@@ -20,7 +20,6 @@ import com.rafael.movieapp.data.models.remote.movie.Result
 import com.rafael.movieapp.data.util.SEARCHED
 import com.rafael.movieapp.data.util.SEARCHED_MOVIE
 import com.rafael.movieapp.data.util.Status.*
-import com.rafael.movieapp.data.util.disableBackPressed
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
 import com.rafael.movieapp.data.util.toast
@@ -44,7 +43,7 @@ class SearchFragment : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSearchBinding.inflate(layoutInflater)
+        binding = FragmentSearchBinding.inflate(inflater, container, false)
 
 
 
@@ -59,7 +58,6 @@ class SearchFragment : Fragment(){
         binding.recyclerViewSearch.adapter = adapter
         observe()
         toDetail()
-        disableBackPressed()
         setHasOptionsMenu(true)
         searchMovie()
     }

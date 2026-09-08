@@ -33,11 +33,9 @@ class TrailerViewModel @Inject constructor(
                     trailerUseCase(movieId)
                 }
                 result.collectLatest { resource ->
-                    resource.data?.results?.let { results ->
-                        if (results.isNotEmpty()) {
-                            _trailerMovie.value = resource
-                        }
-                    }
+                    // Every state is published, otherwise the UI stays stuck on loading
+                    // for a movie that simply has no trailer.
+                    _trailerMovie.value = resource
                 }
             } catch (e: Exception) {
                 _trailerMovie.value = Resource.error(e.localizedMessage ?: "Unknown error", null)

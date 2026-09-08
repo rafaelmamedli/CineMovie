@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-   Sample backup rules file; uncomment and customize as necessary.
-   See https://developer.android.com/guide/topics/data/autobackup
-   for details.
-   Note: This file is ignored for devices older that API 31
-   See https://developer.android.com/about/versions/12/backup-restore
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Auto Backup rules for Android 11 (API 30) and below.
+   Only the local favourites database is backed up; the app stores nothing else.
 -->
 <full-backup-content>
-    <!--
-   <include domain="sharedpref" path="."/>
-   <exclude domain="sharedpref" path="device.xml"/>
--->
+    <include domain="database" path="fav_movie_database" />
+    <include domain="database" path="fav_movie_database-wal" />
+    <include domain="database" path="fav_movie_database-shm" />
 </full-backup-content>

@@ -4,11 +4,11 @@ import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.rafael.movieapp.R
 import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.models.remote.movie.Result
 import java.time.LocalDate
@@ -39,10 +39,15 @@ fun Fragment.showSnackBar(msg: String?,) {
     }
 }
 fun ImageView.glide(path: String?) {
-    val baseUrl = "https://image.tmdb.org/t/p/w342/"
-    val imageUrl = baseUrl + path
+    if (path.isNullOrBlank()) {
+        Glide.with(this).clear(this)
+        setImageResource(R.drawable.placeholder_poster)
+        return
+    }
     Glide.with(this)
-        .load(imageUrl)
+        .load(IMAGE_BASE_URL + path)
+        .placeholder(R.drawable.placeholder_poster)
+        .error(R.drawable.placeholder_poster)
         .into(this)
 }
 
@@ -59,14 +64,6 @@ fun Result.toRoomResult(): FavMovies {
         vote_average = vote_average,
         genrestring = genrestring
     )
-}
-
-fun Fragment.disableBackPressed() {
-    val onBackPressedCallback = object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-        }
-    }
-    requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 }
 
 @RequiresApi(Build.VERSION_CODES.O)

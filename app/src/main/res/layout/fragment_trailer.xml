@@ -8,10 +8,35 @@
     android:background="@drawable/top_round"
     tools:context=".presentation.view.fragments.trailer.TrailerFragment">
 
-    <WebView
-        android:id="@+id/youtubeWebView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        tools:ignore="WebViewLayout" />
+        android:layout_height="350dp">
+
+        <WebView
+            android:id="@+id/youtubeWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="WebViewLayout" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/txtMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="24dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:text="@string/trailer_not_available"
+            tools:visibility="visible" />
+
+    </FrameLayout>
 
 </androidx.cardview.widget.CardView>

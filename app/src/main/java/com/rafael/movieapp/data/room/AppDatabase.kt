@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.rafael.movieapp.data.models.local.FavMovies
 
 
-@Database(entities = [FavMovies::class], version = 1)
+@Database(entities = [FavMovies::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun MovieDao(): MovieDao
 

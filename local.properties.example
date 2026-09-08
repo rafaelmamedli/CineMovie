@@ -1,0 +1,7 @@
+# Copy this file to local.properties (it is git-ignored) and fill in the values.
+# Android SDK location - Android Studio fills this in automatically.
+#sdk.dir=/Users/you/Library/Android/sdk
+
+# TMDB (themoviedb.org) API key - required, the app cannot load any data without it.
+# Get one for free: https://www.themoviedb.org/settings/api
+TMDB_API_KEY=

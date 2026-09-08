@@ -57,7 +57,7 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentDetailBinding.inflate(layoutInflater)
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -97,10 +97,11 @@ class DetailFragment : Fragment() {
             viewModel.getCrew.collect { resource ->
                 when (resource.status) {
                     SUCCESS -> {
-                        adapter = CastAdapter(listCast)
-                        binding.recyclerView.adapter = adapter
-                        val cast = resource.data?.cast
-                        cast?.let { listCast.addAll(it) }
+                        // Reuse the existing adapter and replace the data, so the cast
+                        // list is not duplicated on every emission.
+                        listCast.clear()
+                        resource.data?.cast?.let { listCast.addAll(it) }
+                        adapter.notifyDataSetChanged()
                     }
 
                     ERROR -> {
@@ -139,14 +140,14 @@ class DetailFragment : Fragment() {
                 if (!isMovieInFavorites) {
                     objMovie?.let { viewModel.addFavMovie(it.toRoomResult()) }
                     isMovieInFavorites = true
-                    showSnackBar("Added to favorite")
+                    showSnackBar(getString(R.string.added_to_favourites))
                 }
             } else {
                 if (isMovieInFavorites) {
                     viewModel.getFavMovies.value.data?.find { it.title == objMovie?.title }
                         ?.let {
                             viewModel.deleteFavMovie(it)
-                            showSnackBar("Removed from favorites")
+                            showSnackBar(getString(R.string.removed_from_favourites))
                             isMovieInFavorites = false
 
                         }

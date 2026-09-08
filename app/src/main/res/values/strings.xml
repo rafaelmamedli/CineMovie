@@ -21,4 +21,9 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="favourites">Favourites</string>
+    <string name="trailer_not_available">No trailer is available for this movie.</string>
+    <string name="trailer_load_error">Trailer could not be loaded. Please try again.</string>
+    <string name="tmdb_attribution">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+    <string name="added_to_favourites">Added to favourites</string>
+    <string name="removed_from_favourites">Removed from favourites</string>
 </resources>

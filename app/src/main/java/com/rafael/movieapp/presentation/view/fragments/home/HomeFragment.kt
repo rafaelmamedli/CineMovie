@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -27,7 +28,6 @@ import com.rafael.movieapp.data.util.RECENT_MOVIE
 import com.rafael.movieapp.data.util.Status.*
 import com.rafael.movieapp.data.util.TOP_RATED
 import com.rafael.movieapp.data.util.TOP_RATED_MOVIE
-import com.rafael.movieapp.data.util.disableBackPressed
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
 import com.rafael.movieapp.databinding.FragmentHomeBinding
@@ -52,6 +52,8 @@ class HomeFragment : Fragment() {
     private val listRecentMovies = mutableListOf<Result>()
     private val listTopRated = mutableListOf<Result>()
 
+    private var errorDialog: Dialog? = null
+
     var objectTopRated: Movie? = null
     var objectRecent: Movie? = null
     var objectPopular: Movie? = null
@@ -61,7 +63,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         val bottomBar = requireActivity().findViewById<ChipNavigationBar>(R.id.bottom_nav_bar)
         bottomBar.show()
         return binding.root
@@ -74,7 +76,6 @@ class HomeFragment : Fragment() {
         observeData()
         goToSeeAll()
         toDetail()
-        disableBackPressed()
     }
 
 
@@ -101,7 +102,8 @@ class HomeFragment : Fragment() {
                         ERROR -> {
                             binding.progressBar.gone()
                             binding.txtErrorMessage.show()
-                            showAlertDialog()
+                            resource.message?.let { binding.txtErrorMessage.text = it }
+                            showAlertDialog(resource.message)
                             Log.e("ERROR", resource.message.toString())
                         }
 
@@ -251,14 +253,22 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun showAlertDialog() {
+    private fun showAlertDialog(message: String?) {
+        // Only one dialog at a time: three parallel requests used to stack three dialogs.
+        if (errorDialog?.isShowing == true) return
+
         val alertDialog = Dialog(requireContext())
+        errorDialog = alertDialog
         with(alertDialog) {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             setCancelable(false)
             setContentView(R.layout.layout_custom_dialog)
             window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
+        message?.let {
+            alertDialog.findViewById<TextView>(R.id.tvMessage)?.text = it
+        }
+
         val btnRetry: Button = alertDialog.findViewById(R.id.btnRetry)
 
         btnRetry.setOnClickListener {
@@ -266,6 +276,13 @@ class HomeFragment : Fragment() {
             alertDialog.dismiss()
         }
         alertDialog.show()
+    }
+
+    override fun onDestroyView() {
+        // A dialog that outlives the fragment leaks its window.
+        errorDialog?.dismiss()
+        errorDialog = null
+        super.onDestroyView()
     }
 
 

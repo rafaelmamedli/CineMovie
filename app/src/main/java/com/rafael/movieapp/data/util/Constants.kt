@@ -1,7 +1,17 @@
 package com.rafael.movieapp.data.util
 
+import com.rafael.movieapp.BuildConfig
+
 const val BASE_URL = "https://api.themoviedb.org/3/"
-const val API_KEY = "802b2c4b88ea1183e50e6b285a27696e"
+const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w342/"
+
+/**
+ * TMDB api key. Injected at build time from local.properties / the TMDB_API_KEY
+ * environment variable, so that no secret is stored in the repository.
+ */
+val API_KEY: String = BuildConfig.TMDB_API_KEY
+
+val hasApiKey: Boolean get() = API_KEY.isNotBlank()
 
 const val TOP_RATED_MOVIE="top_rated_movie"
 const val TOP_RATED="top_rated"

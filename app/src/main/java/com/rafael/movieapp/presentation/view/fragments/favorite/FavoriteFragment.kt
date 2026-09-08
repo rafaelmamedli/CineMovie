@@ -15,7 +15,6 @@ import com.rafael.movieapp.data.models.local.FavMovies
 import com.rafael.movieapp.data.util.FAVOURITE
 import com.rafael.movieapp.data.util.FAVOURITE_MOVIE
 import com.rafael.movieapp.data.util.Status.*
-import com.rafael.movieapp.data.util.disableBackPressed
 import com.rafael.movieapp.data.util.gone
 import com.rafael.movieapp.data.util.show
 import com.rafael.movieapp.databinding.FragmentFavoriteBinding
@@ -36,7 +35,7 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFavoriteBinding.inflate(layoutInflater)
+        binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,7 +43,6 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = FavouriteAdapter(listFavMovies)
         binding.recyclerViewFavorite.adapter = adapter
-        disableBackPressed()
 
     }
 

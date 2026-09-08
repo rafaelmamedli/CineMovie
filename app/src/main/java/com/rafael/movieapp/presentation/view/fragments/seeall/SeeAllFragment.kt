@@ -33,7 +33,7 @@ class SeeAllFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSeeAllBinding.inflate(layoutInflater)
+        binding = FragmentSeeAllBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -91,7 +91,8 @@ class SeeAllFragment : Fragment() {
                     }
                 }
 
-
+                // Without this the list stays empty on screen.
+                adapter.notifyDataSetChanged()
             }
         }
     }

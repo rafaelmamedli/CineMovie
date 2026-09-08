@@ -6,9 +6,22 @@
     tools:context=".presentation.view.fragments.splash.SplashFragment">
 
     <ImageView
-        android:padding="120dp"
-        android:src="@drawable/logo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:padding="120dp"
+        android:src="@drawable/logo" />
+
+    <!-- Attribution required by the TMDB API terms of use. -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:paddingHorizontal="32dp"
+        android:text="@string/tmdb_attribution"
+        android:textColor="@color/gray"
+        android:textSize="11sp" />
 
 </FrameLayout>
